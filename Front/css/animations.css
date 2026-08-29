@@ -1,0 +1,43 @@
+/* ============================================================
+   ANIMATIONS  (spec §59, §60, §73)
+   These classes are initial states set by JS before GSAP animates.
+   If JS/GSAP fail or reduced-motion is on, content stays visible.
+   ============================================================ */
+
+.reveal { opacity: 0; }
+.reveal-up { opacity: 0; transform: translateY(24px); }
+.reveal-down { opacity: 0; transform: translateY(-24px); }
+.reveal-scale { opacity: 0; transform: scale(0.94); }
+
+.is-in { opacity: 1 !important; transform: none !important; }
+
+/* Page transition overlay */
+.page-wipe {
+  position: fixed; inset: 0; z-index: 5000; background: var(--burgundy);
+  transform: translateY(100%); pointer-events: none;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 0%; z-index: 900;
+  background: linear-gradient(90deg, var(--burgundy), var(--gold)); transition: width 0.1s linear;
+}
+
+/* Hero book float */
+@keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.float { animation: floatY 6s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .float { animation: none; } }
+
+/* Marquee for popular chips */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Pulsing dot for live indicators */
+@keyframes pulseDot { 0% { box-shadow: 0 0 0 0 rgba(116,60,69,0.4); } 70% { box-shadow: 0 0 0 6px rgba(116,60,69,0); } 100% { box-shadow: 0 0 0 0 rgba(116,60,69,0); } }
+.dot-live { position: relative; }
+.dot-live::after { content: ''; position: absolute; inset: 0; border-radius: 999px; animation: pulseDot 2s infinite; }
+
+/* Number count handled by JS; nothing needed here */
+
+/* Command palette item highlight */
+.cmd-item.is-active { background: rgba(116,60,69,0.08); color: var(--burgundy); }
+.cmd-item.is-active .cmd-kbd { border-color: rgba(116,60,69,0.3); }

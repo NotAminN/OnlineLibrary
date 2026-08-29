@@ -1,0 +1,63 @@
+/* ============================================================
+   READER  (spec §32–§38, §75, §76)
+   ============================================================ */
+.reader { background: var(--reader-bg); color: var(--reader-ink); min-height: 100vh; display: flex; flex-direction: column; transition: background var(--t-base) var(--ease); }
+.reader.is-dark { --reader-bg: var(--darkreader-bg); --reader-ink: var(--darkreader-ink); --reader-surface: var(--darkreader-surface); }
+.reader.is-sepia { --reader-bg: var(--sepia-bg); --reader-ink: var(--sepia-ink); --reader-surface: #fbf3e4; }
+
+.reader__bar {
+  position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 0.75rem;
+  padding: 0.7rem clamp(1rem, 4vw, 2rem); background: color-mix(in srgb, var(--reader-bg) 86%, transparent);
+  backdrop-filter: blur(10px); border-bottom: 1px solid rgba(128,128,128,0.14); color: var(--reader-ink);
+  font-size: 0.85rem;
+}
+.reader__bar .reader__title { font-weight: 600; max-width: 40ch; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.reader__bar-actions { display: flex; align-items: center; gap: 0.35rem; }
+.reader__btn { width: 2.4rem; height: 2.4rem; border-radius: 50%; display: grid; place-items: center; background: transparent; border: none; color: var(--reader-ink); opacity: 0.75; transition: opacity var(--t-fast), background var(--t-fast); }
+.reader__btn:hover { opacity: 1; background: rgba(128,128,128,0.14); }
+.reader__btn svg { width: 1.2rem; height: 1.2rem; }
+
+.reader__stage { flex: 1; display: flex; justify-content: center; padding: clamp(2rem, 6vh, 5rem) 1.25rem; }
+.reader__content {
+  width: var(--reader-width); max-width: 100%; font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height); text-align: var(--reader-align);
+}
+.reader__content h2 { font-family: 'Playfair Display', serif; font-size: calc(var(--reader-font-size) * 1.9); margin: 0 0 1.2em; line-height: 1.2; color: var(--reader-ink); }
+.reader__content p { margin: 0 0 1.4em; text-align: var(--reader-align); }
+.reader__content p:first-of-type::first-letter { }
+.reader__chapter-label { font-size: 0.78rem; letter-spacing: 0.16em; text-transform: uppercase; color: color-mix(in srgb, var(--reader-ink) 55%, transparent); margin-bottom: 1.5rem; font-weight: 600; }
+
+.reader__footer {
+  position: sticky; bottom: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.8rem clamp(1rem, 4vw, 2rem); border-top: 1px solid rgba(128,128,128,0.14);
+  background: color-mix(in srgb, var(--reader-bg) 86%, transparent); backdrop-filter: blur(10px); color: var(--reader-ink);
+}
+.reader__nav-btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.95rem; border-radius: 999px; border: 1px solid rgba(128,128,128,0.25); background: transparent; color: var(--reader-ink); font-size: 0.85rem; font-weight: 500; transition: background var(--t-fast); }
+.reader__nav-btn:hover { background: rgba(128,128,128,0.14); }
+.reader__nav-btn:disabled { opacity: 0.35; pointer-events: none; }
+
+.reader__progress-track { flex: 1; height: 4px; background: rgba(128,128,128,0.2); border-radius: 999px; overflow: hidden; }
+.reader__progress-fill { height: 100%; background: var(--burgundy); transition: width var(--t-base) var(--ease); }
+.reader__pct { font-variant-numeric: tabular-nums; font-size: 0.8rem; opacity: 0.75; min-width: 3ch; }
+
+/* Reader settings drawer */
+.reader-setting { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.reader-setting:last-child { border-bottom: none; }
+.reader-setting__label { font-size: 0.82rem; font-weight: 600; color: var(--warm-gray); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.7rem; }
+
+/* bookmark + note highlight */
+.reader-note-marker { background: rgba(181,154,101,0.28); border-radius: 2px; padding: 0 2px; cursor: pointer; }
+.bookmark-list-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.85rem 0; border-bottom: 1px solid var(--line); }
+.bookmark-list-item:last-child { border-bottom: none; }
+
+/* TOC */
+.toc-item { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; width: 100%; text-align: left; padding: 0.7rem 0.5rem; border-radius: var(--radius-sm); background: none; border: none; color: var(--ink-soft); transition: background var(--t-fast); }
+.toc-item:hover { background: rgba(37,35,33,0.04); }
+.toc-item.is-current { color: var(--burgundy); font-weight: 600; background: rgba(116,60,69,0.06); }
+.toc-num { font-size: 0.78rem; color: var(--warm-gray-light); font-variant-numeric: tabular-nums; }
+
+/* Reading surface paper texture */
+.reader__stage.is-paper::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; opacity: 0.5;
+  background-image: radial-gradient(circle at 30% 20%, rgba(0,0,0,0.015), transparent 60%);
+}

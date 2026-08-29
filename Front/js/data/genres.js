@@ -1,0 +1,20 @@
+// Genres / categories (spec §23, §94). Colors drive procedural cover art.
+export const genres = [
+  { id: 'fiction', name: 'Fiction', color: '#743C45', desc: 'Stories that map the interior lives of their characters.' },
+  { id: 'mystery', name: 'Mystery', color: '#3F5246', desc: 'Puzzles of motive, memory, and consequence.' },
+  { id: 'crime', name: 'Crime', color: '#5E2F37', desc: 'The line between law and its breaking.' },
+  { id: 'adventure', name: 'Adventure', color: '#9C834F', desc: ' Journeys that test the limits of endurance.' },
+  { id: 'history', name: 'History', color: '#B58A4C', desc: 'How the past quietly shapes the present.' },
+  { id: 'philosophy', name: 'Philosophy', color: '#52685A', desc: 'Clear thinking about the hardest questions.' },
+  { id: 'psychology', name: 'Psychology', color: '#6E6A64', desc: 'The architecture of the mind and behavior.' },
+  { id: 'science', name: 'Science', color: '#5A7C9A', desc: 'The observable universe, explained.' },
+  { id: 'technology', name: 'Technology', color: '#4A5A8A', desc: 'The tools that redefine what is possible.' },
+  { id: 'business', name: 'Business', color: '#7A6A45', desc: 'How value is created, traded, and sustained.' },
+  { id: 'biography', name: 'Biography', color: '#8A6B52', desc: 'A life examined, in full color.' },
+  { id: 'art', name: 'Art', color: '#9A5A6A', desc: 'The making of meaning with form and color.' },
+  { id: 'self', name: 'Self-Development', color: '#5A7A5F', desc: 'Practical wisdom for a life well directed.' },
+  { id: 'ya', name: 'Young Adult', color: '#B0596A', desc: 'First thresholds into a wider world.' },
+  { id: 'poetry', name: 'Poetry', color: '#6A5A8A', desc: 'Language distilled to its essential music.' }
+];
+
+export const genreById = Object.fromEntries(genres.map((g) => [g.id, g]));
