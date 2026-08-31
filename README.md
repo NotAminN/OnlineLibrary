@@ -51,7 +51,7 @@ A seeded demo user is available: **alex.morgan@example.com** / **demo-pass**.
 The repository is configured for an all-in-one Vercel deployment (`vercel.json`):
 
 - The Vite frontend builds to `dist/` and is served as static files.
-- `/api/*`, `/admin/*`, and `/media/*` are routed to the Django app running as a serverless function (`api/__django.py`).
+- `/api/*`, `/admin/*`, and `/media/*` are routed to the Django app running as a serverless function (`api/django.py`).
 
 Setup:
 
@@ -92,7 +92,7 @@ project-root/
 │   ├── manage.py
 │   └── requirements.txt
 ├── api/
-│   └── __django.py         # Vercel serverless entry for Django
+│   └── django.py           # Vercel serverless entry for Django
 ├── scripts/
 │   ├── gen-html.mjs        # generates the HTML entry shells
 │   ├── export_seed_data.mjs

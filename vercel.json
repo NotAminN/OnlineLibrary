@@ -6,23 +6,23 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "/api/__django"
+      "destination": "/api/django"
     },
     {
       "source": "/admin/:path*",
-      "destination": "/api/__django"
+      "destination": "/api/django"
     },
     {
       "source": "/admin",
-      "destination": "/api/__django"
+      "destination": "/api/django"
     },
     {
       "source": "/media/:path*",
-      "destination": "/api/__django"
+      "destination": "/api/django"
     }
   ],
   "functions": {
-    "api/__django.py": {
+    "api/django.py": {
       "includeFiles": "backend/**"
     }
   },
