@@ -43,5 +43,4 @@ htmlcov/
 .coverage.*
 
 # Local tooling / deployment
-.claude/launch.json
 .vercel/
