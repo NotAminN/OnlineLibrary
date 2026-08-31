@@ -62,7 +62,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [p for p in [BASE_DIR.parent / 'dist'] if p.is_dir()],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,7 +115,8 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 # The Vite build output (repo-root/dist) is served by Vercel's static layer
 # in production; keep it declared for Django's collectstatic/admin.
-STATICFILES_DIRS = [p for p in [BASE_DIR.parent / 'dist'] if p.is_dir()]
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files
 MEDIA_URL = '/media/'

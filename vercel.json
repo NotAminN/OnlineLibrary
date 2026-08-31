@@ -1,8 +1,9 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": false,
+
   "rewrites": [
     {
       "source": "/api/:path*",
@@ -11,24 +12,18 @@
     {
       "source": "/admin/:path*",
       "destination": "/api/django"
-    },
-    {
-      "source": "/admin",
-      "destination": "/api/django"
-    },
-    {
-      "source": "/media/:path*",
-      "destination": "/api/django"
     }
   ],
+
   "functions": {
     "api/django.py": {
       "includeFiles": "backend/**"
     }
   },
+
   "headers": [
     {
-      "source": "/static/assets/(.*)",
+      "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
