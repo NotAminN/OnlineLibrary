@@ -3,8 +3,9 @@ import { resolve } from 'path';
 
 export default defineConfig({
   root: 'Front',
+  envDir: '../',
   // Use relative base so the build can be served from any static host or a subpath.
-  base: './',
+  base: '/static/',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
@@ -36,6 +37,17 @@ export default defineConfig({
   server: {
     port: 5173,
     open: false,
+    // Forward API calls to the Django backend during development.
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8800',
+        changeOrigin: true
+      },
+      '/media': {
+        target: 'http://127.0.0.1:8800',
+        changeOrigin: true
+      }
+    },
     // Prevent the browser from caching modules/assets in dev so edits always show up.
     headers: {
       'Cache-Control': 'no-store'

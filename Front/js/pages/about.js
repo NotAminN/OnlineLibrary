@@ -6,9 +6,9 @@ import { qs } from '../utils/dom.js';
 
 export default {
   render() {
-    const total = dataService.books.length;
-    const authors = dataService.authors.length;
-    const collections = dataService.collections.length;
+    const total = dataService.cache.books.length;
+    const authors = dataService.cache.authors.length;
+    const collections = dataService.cache.collections.length;
     return `
     <section class="about-hero" style="margin:clamp(1.5rem,4vw,3rem);">
       <div class="eyebrow" style="color:var(--gold)">ABOUT LUMINA</div>

@@ -4,6 +4,8 @@ import { icon } from '../icons.js';
 import { toast } from '../utils/toast.js';
 import { qs } from '../utils/dom.js';
 
+import { api } from '../services/api.js';
+
 export default {
   render() {
     return `
@@ -24,10 +26,10 @@ export default {
           <h1 class="page-title" style="font-size:2rem">Create your account</h1>
           <p class="muted mb-6">Start building your personal library.</p>
           <form id="register-form" class="flex flex-col gap-4">
-            <div class="field"><label class="field__label">Display name</label><input class="input" required placeholder="Alex Morgan" value="Alex Morgan"/></div>
+            <div class="field"><label class="field__label">Display name</label><input class="input" required placeholder="Alex Morgan" /></div>
             <div class="field"><label class="field__label">Email</label><input class="input" type="email" required placeholder="you@example.com"/></div>
-            <div class="field"><label class="field__label">Password</label><input class="input" type="password" required placeholder="At least 6 characters" value="demo-pass"/></div>
-            <button class="btn btn--primary btn--lg" type="submit">Create account</button>
+            <div class="field"><label class="field__label">Password</label><input class="input" type="password" required placeholder="At least 6 characters" /></div>
+            <button class="btn btn--primary btn--lg" type="submit" id="register-btn">Create account</button>
           </form>
           <p class="text-sm muted mt-6 text-center">Already have an account? <a href="login.html" style="color:var(--burgundy);font-weight:600">Sign in</a></p>
         </div>
@@ -35,14 +37,36 @@ export default {
     </div>`;
   },
   init(root) {
-    qs('#register-form', root).onsubmit = (e) => {
+    qs('#register-form', root).onsubmit = async (e) => {
       e.preventDefault();
       const name = e.target.querySelector('input[placeholder="Alex Morgan"]').value.trim() || 'Reader';
       const email = e.target.querySelector('input[type=email]').value;
-      store.login(email);
-      if (name) store.updateUser({ name });
-      toast('Account created (demo).', 'success');
-      setTimeout(() => location.href = 'onboarding.html', 500);
+      const password = e.target.querySelector('input[type=password]').value;
+      const btn = qs('#register-btn', root);
+      const origText = btn.textContent;
+      btn.textContent = 'Creating...';
+      btn.disabled = true;
+
+      try {
+         const res = await api.post('/auth/register/', {
+            username: email,
+            email: email,
+            password: password,
+            password_confirm: password,
+            display_name: name
+         });
+         
+         if (res.tokens) {
+            api.setTokens(res.tokens);
+            await store.initAuth();
+            toast('Account created successfully.', 'success');
+            setTimeout(() => location.href = 'onboarding.html', 500);
+         }
+      } catch (err) {
+         toast(err.message || 'Registration failed.', 'error');
+         btn.textContent = origText;
+         btn.disabled = false;
+      }
     };
   }
 };

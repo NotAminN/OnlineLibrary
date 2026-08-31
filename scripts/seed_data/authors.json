@@ -1,0 +1,454 @@
+[
+  {
+    "id": "a-harper-lee",
+    "name": "Harper Lee",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "Harper Lee (1926–2016) was an American novelist whose debut, To Kill a Mockingbird, won the Pulitzer Prize and became one of the most widely read novels of the twentieth century.",
+    "born": 1926,
+    "nationality": "American"
+  },
+  {
+    "id": "a-jane-austen",
+    "name": "Jane Austen",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "Jane Austen (1775–1817) was an English novelist whose sharp social comedies of manners, including Pride and Prejudice, remain touchstones of English fiction.",
+    "born": 1775,
+    "nationality": "English"
+  },
+  {
+    "id": "a-george-orwell",
+    "name": "George Orwell",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "George Orwell (1903–1950) was an English essayist and novelist whose warnings against totalitarianism, above all Nineteen Eighty-Four, shaped modern political language.",
+    "born": 1903,
+    "nationality": "English"
+  },
+  {
+    "id": "a-fitzgerald",
+    "name": "F. Scott Fitzgerald",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "F. Scott Fitzgerald (1896–1940) was an American writer of the Jazz Age whose masterpiece, The Great Gatsby, dissected wealth and the American dream.",
+    "born": 1896,
+    "nationality": "American"
+  },
+  {
+    "id": "a-marquez",
+    "name": "Gabriel García Márquez",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "Gabriel García Márquez (1927–2014) was a Colombian novelist and Nobel laureate, the leading voice of magical realism and author of One Hundred Years of Solitude.",
+    "born": 1927,
+    "nationality": "Colombian"
+  },
+  {
+    "id": "a-hosseini",
+    "name": "Khaled Hosseini",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "Khaled Hosseini (b. 1965) is an Afghan-American novelist and physician whose The Kite Runner brought Afghan history to millions of readers.",
+    "born": 1965,
+    "nationality": "Afghan–American"
+  },
+  {
+    "id": "a-murakami",
+    "name": "Haruki Murakami",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "Haruki Murakami (b. 1949) is a Japanese novelist whose dreamlike, music-steeped fiction — including Norwegian Wood — has a devoted global readership.",
+    "born": 1949,
+    "nationality": "Japanese"
+  },
+  {
+    "id": "a-ishiguro",
+    "name": "Kazuo Ishiguro",
+    "genres": [
+      "fiction"
+    ],
+    "bio": "Kazuo Ishiguro (b. 1954) is a British–Japanese novelist and Nobel laureate known for The Remains of the Day and his studies of memory and restraint.",
+    "born": 1954,
+    "nationality": "British–Japanese"
+  },
+  {
+    "id": "a-christie",
+    "name": "Agatha Christie",
+    "genres": [
+      "mystery",
+      "crime"
+    ],
+    "bio": "Agatha Christie (1890–1976) was an English writer, the best-selling novelist in history, whose puzzles — from And Then There Were None onward — defined the genre.",
+    "born": 1890,
+    "nationality": "English"
+  },
+  {
+    "id": "a-tana-french",
+    "name": "Tana French",
+    "genres": [
+      "mystery",
+      "crime"
+    ],
+    "bio": "Tana French (b. 1973) is an Irish novelist whose atmospheric Dublin Murder Squad books, beginning with In the Woods, reimagined the literary crime novel.",
+    "born": 1973,
+    "nationality": "Irish"
+  },
+  {
+    "id": "a-larsson",
+    "name": "Stieg Larsson",
+    "genres": [
+      "crime",
+      "mystery"
+    ],
+    "bio": "Stieg Larsson (1954–2004) was a Swedish journalist whose Millennium trilogy, led by The Girl with the Dragon Tattoo, became a worldwide phenomenon.",
+    "born": 1954,
+    "nationality": "Swedish"
+  },
+  {
+    "id": "a-chandler",
+    "name": "Raymond Chandler",
+    "genres": [
+      "crime"
+    ],
+    "bio": "Raymond Chandler (1888–1959) was an American writer who gave the private-eye novel its poetry; The Big Sleep introduced Philip Marlowe.",
+    "born": 1888,
+    "nationality": "American"
+  },
+  {
+    "id": "a-harari",
+    "name": "Yuval Noah Harari",
+    "genres": [
+      "history",
+      "philosophy"
+    ],
+    "bio": "Yuval Noah Harari (b. 1976) is an Israeli historian whose sweeping synthesis Sapiens became one of the most discussed history books of its decade.",
+    "born": 1976,
+    "nationality": "Israeli"
+  },
+  {
+    "id": "a-mary-beard",
+    "name": "Mary Beard",
+    "genres": [
+      "history"
+    ],
+    "bio": "Mary Beard (b. 1955) is a British classicist whose SPQR retells a thousand years of Roman history with wit and rigor.",
+    "born": 1955,
+    "nationality": "British"
+  },
+  {
+    "id": "a-diamond",
+    "name": "Jared Diamond",
+    "genres": [
+      "history",
+      "science"
+    ],
+    "bio": "Jared Diamond (b. 1937) is an American geographer and biologist whose Guns, Germs, and Steel reframed the deep history of human societies.",
+    "born": 1937,
+    "nationality": "American"
+  },
+  {
+    "id": "a-hawking",
+    "name": "Stephen Hawking",
+    "genres": [
+      "science"
+    ],
+    "bio": "Stephen Hawking (1942–2018) was an English theoretical physicist whose A Brief History of Time made cosmology a bestseller for a generation.",
+    "born": 1942,
+    "nationality": "English"
+  },
+  {
+    "id": "a-sagan",
+    "name": "Carl Sagan",
+    "genres": [
+      "science"
+    ],
+    "bio": "Carl Sagan (1934–1996) was an American astronomer and science communicator whose Cosmos carried the wonder of science to millions.",
+    "born": 1934,
+    "nationality": "American"
+  },
+  {
+    "id": "a-dawkins",
+    "name": "Richard Dawkins",
+    "genres": [
+      "science"
+    ],
+    "bio": "Richard Dawkins (b. 1941) is a British evolutionary biologist whose The Selfish Gene changed how we think about natural selection.",
+    "born": 1941,
+    "nationality": "British"
+  },
+  {
+    "id": "a-skloot",
+    "name": "Rebecca Skloot",
+    "genres": [
+      "science",
+      "biography"
+    ],
+    "bio": "Rebecca Skloot (b. 1972) is an American science writer whose The Immortal Life of Henrietta Lacks fused reporting with a family story.",
+    "born": 1972,
+    "nationality": "American"
+  },
+  {
+    "id": "a-carson",
+    "name": "Rachel Carson",
+    "genres": [
+      "science",
+      "history"
+    ],
+    "bio": "Rachel Carson (1907–1964) was an American marine biologist whose Silent Spring launched the modern environmental movement.",
+    "born": 1907,
+    "nationality": "American"
+  },
+  {
+    "id": "a-kaur",
+    "name": "Rupi Kaur",
+    "genres": [
+      "poetry"
+    ],
+    "bio": "Rupi Kaur (b. 1992) is a Canadian poet and illustrator whose collections milk and honey and The Sun and Her Flowers defined a new popular poetics.",
+    "born": 1992,
+    "nationality": "Canadian–Indian"
+  },
+  {
+    "id": "a-plath",
+    "name": "Sylvia Plath",
+    "genres": [
+      "poetry"
+    ],
+    "bio": "Sylvia Plath (1932–1963) was an American poet whose collection Ariel remains one of the most electrifying volumes in modern poetry.",
+    "born": 1932,
+    "nationality": "American"
+  },
+  {
+    "id": "a-kahneman",
+    "name": "Daniel Kahneman",
+    "genres": [
+      "psychology"
+    ],
+    "bio": "Daniel Kahneman (1934–2024) was an Israeli–American psychologist and Nobel laureate whose Thinking, Fast and Slow mapped the two systems of the mind.",
+    "born": 1934,
+    "nationality": "Israeli–American"
+  },
+  {
+    "id": "a-susan-cain",
+    "name": "Susan Cain",
+    "genres": [
+      "psychology",
+      "self"
+    ],
+    "bio": "Susan Cain (b. 1968) is an American writer whose Quiet revalued introversion and changed how workplaces and schools think.",
+    "born": 1968,
+    "nationality": "American"
+  },
+  {
+    "id": "a-krakauer",
+    "name": "Jon Krakauer",
+    "genres": [
+      "adventure",
+      "biography"
+    ],
+    "bio": "Jon Krakauer (b. 1954) is an American writer and mountaineer whose Into the Wild and Into Thin Air are classics of narrative nonfiction.",
+    "born": 1954,
+    "nationality": "American"
+  },
+  {
+    "id": "a-lansing",
+    "name": "Alfred Lansing",
+    "genres": [
+      "adventure",
+      "history"
+    ],
+    "bio": "Alfred Lansing (1921–1975) was an American journalist whose Endurance tells Shackleton's Antarctic survival voyage with novelistic power.",
+    "born": 1921,
+    "nationality": "American"
+  },
+  {
+    "id": "a-gombrich",
+    "name": "E. H. Gombrich",
+    "genres": [
+      "art",
+      "history"
+    ],
+    "bio": "E. H. Gombrich (1909–2001) was an Austrian–British art historian whose The Story of Art has introduced millions to the history of images.",
+    "born": 1909,
+    "nationality": "Austrian–British"
+  },
+  {
+    "id": "a-berger",
+    "name": "John Berger",
+    "genres": [
+      "art"
+    ],
+    "bio": "John Berger (1926–2017) was an English critic and novelist whose Ways of Seeing changed how we look at art and at looking itself.",
+    "born": 1926,
+    "nationality": "English"
+  },
+  {
+    "id": "a-thiel",
+    "name": "Peter Thiel",
+    "genres": [
+      "business",
+      "technology"
+    ],
+    "bio": "Peter Thiel (b. 1967) is an entrepreneur and investor whose Zero to One distills a contrarian philosophy of startups.",
+    "born": 1967,
+    "nationality": "American"
+  },
+  {
+    "id": "a-jim-collins",
+    "name": "Jim Collins",
+    "genres": [
+      "business"
+    ],
+    "bio": "Jim Collins (b. 1958) is an American researcher of company performance whose Good to Great became a standard text of management.",
+    "born": 1958,
+    "nationality": "American"
+  },
+  {
+    "id": "a-marcus-aurelius",
+    "name": "Marcus Aurelius",
+    "genres": [
+      "philosophy"
+    ],
+    "bio": "Marcus Aurelius (121–180) was Roman emperor and Stoic philosopher; his private notebook, Meditations, endures as a manual of self-command.",
+    "born": 121,
+    "nationality": "Roman"
+  },
+  {
+    "id": "a-frankl",
+    "name": "Viktor E. Frankl",
+    "genres": [
+      "philosophy",
+      "psychology"
+    ],
+    "bio": "Viktor E. Frankl (1905–1997) was an Austrian psychiatrist and Holocaust survivor whose Man's Search for Meaning found purpose in the darkest places.",
+    "born": 1905,
+    "nationality": "Austrian"
+  },
+  {
+    "id": "a-gaarder",
+    "name": "Jostein Gaarder",
+    "genres": [
+      "philosophy",
+      "fiction"
+    ],
+    "bio": "Jostein Gaarder (b. 1952) is a Norwegian writer whose Sophie's World became the world's unlikely best-selling history of philosophy.",
+    "born": 1952,
+    "nationality": "Norwegian"
+  },
+  {
+    "id": "a-camus",
+    "name": "Albert Camus",
+    "genres": [
+      "philosophy"
+    ],
+    "bio": "Albert Camus (1913–1960) was a French–Algerian writer and Nobel laureate whose The Myth of Sisyphus confronts absurdity with lucidity.",
+    "born": 1913,
+    "nationality": "French–Algerian"
+  },
+  {
+    "id": "a-suzanne-collins",
+    "name": "Suzanne Collins",
+    "genres": [
+      "ya",
+      "fiction"
+    ],
+    "bio": "Suzanne Collins (b. 1962) is an American author whose Hunger Games trilogy reshaped young adult fiction for a generation.",
+    "born": 1962,
+    "nationality": "American"
+  },
+  {
+    "id": "a-christensen",
+    "name": "Clayton M. Christensen",
+    "genres": [
+      "technology",
+      "business"
+    ],
+    "bio": "Clayton M. Christensen (1952–2020) was an American scholar whose The Innovator's Dilemma gave business the theory of disruption.",
+    "born": 1952,
+    "nationality": "American"
+  },
+  {
+    "id": "a-kidder",
+    "name": "Tracy Kidder",
+    "genres": [
+      "technology",
+      "biography"
+    ],
+    "bio": "Tracy Kidder (b. 1945) is an American narrative nonfiction writer whose The Soul of a New Machine captured engineering as human drama.",
+    "born": 1945,
+    "nationality": "American"
+  },
+  {
+    "id": "a-isaacson",
+    "name": "Walter Isaacson",
+    "genres": [
+      "biography"
+    ],
+    "bio": "Walter Isaacson (b. 1951) is an American biographer whose acclaimed lives of Leonardo, Franklin, and Steve Jobs set the standard for the form.",
+    "born": 1951,
+    "nationality": "American"
+  },
+  {
+    "id": "a-mandela",
+    "name": "Nelson Mandela",
+    "genres": [
+      "biography",
+      "history"
+    ],
+    "bio": "Nelson Mandela (1918–2013) was a South African statesman whose Long Walk to Freedom is among the great autobiographies of the century.",
+    "born": 1918,
+    "nationality": "South African"
+  },
+  {
+    "id": "a-anne-frank",
+    "name": "Anne Frank",
+    "genres": [
+      "biography",
+      "history"
+    ],
+    "bio": "Anne Frank (1929–1945) was a German–Dutch teenager whose diary, written in hiding in Amsterdam, became one of the world's most read books.",
+    "born": 1929,
+    "nationality": "German–Dutch"
+  },
+  {
+    "id": "a-clear",
+    "name": "James Clear",
+    "genres": [
+      "self",
+      "business"
+    ],
+    "bio": "James Clear (b. 1986) is an American writer whose Atomic Habits became the definitive popular guide to behavior change.",
+    "born": 1986,
+    "nationality": "American"
+  },
+  {
+    "id": "a-newport",
+    "name": "Cal Newport",
+    "genres": [
+      "self",
+      "technology"
+    ],
+    "bio": "Cal Newport (b. 1982) is an American computer scientist whose Deep Work argues that focus is the scarce skill of the modern economy.",
+    "born": 1982,
+    "nationality": "American"
+  },
+  {
+    "id": "a-dweck",
+    "name": "Carol S. Dweck",
+    "genres": [
+      "self",
+      "psychology"
+    ],
+    "bio": "Carol S. Dweck (b. 1946) is an American psychologist whose Mindset introduced the growth mindset to education and business.",
+    "born": 1946,
+    "nationality": "American"
+  }
+]

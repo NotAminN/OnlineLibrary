@@ -8,6 +8,8 @@ import { bookCard, cover, meta } from '../components/bookCard.js';
 import { coverDataUri, coverFallbackUri, authorName } from '../utils/covers.js';
 import { genreById, genres } from '../data/genres.js';
 import { openSearch } from '../components/modals.js';
+import { initBentoGrid } from '../components/bentoGrid.js';
+import { authorCard, loadPortraitsThenBind } from '../components/authorCard.js';
 import { heroSequence, sectionReveal, staggerReveal, parallax, fadeUp, prefersReduced } from '../animations/gsap.js';
 import { gsap } from '../animations/gsap.js';
 
@@ -24,12 +26,12 @@ function sectionHead(eyebrow, title, action) {
 
 export default {
   render() {
-    const featured = dataService.books.find((b) => b.editorPick) || dataService.books[0];
+    const featured = dataService.cache.books.find((b) => b.editorPick) || dataService.cache.books[0];
     const popular = recommendService.trending(8);
-    const newArrivals = dataService.books.filter((b) => b.isNew).slice(0, 8);
-    const editorPick = dataService.books.find((b) => b.editorPick && b.genre === 'poetry') || featured;
-    const authorsList = dataService.authors.slice(0, 6);
-    const collectionsList = dataService.collections.slice(0, 3);
+    const newArrivals = dataService.cache.books.filter((b) => b.isNew).slice(0, 8);
+    const editorPick = dataService.cache.books.find((b) => b.editorPick && b.genre === 'poetry') || featured;
+    const authorsList = dataService.cache.authors.slice(0, 6);
+    const collectionsList = dataService.cache.collections.slice(0, 3);
     const recommend = recommendService.forYou(6);
     const continueReading = store.get().history.slice(0, 4).map((h) => dataService.get(h.bookId)).filter(Boolean);
     const stats = recommendService.stats();
@@ -39,7 +41,7 @@ export default {
       <!-- HERO -->
       <section class="relative overflow-hidden">
         <div class="container-wide" style="padding-block:clamp(3rem,7vw,6rem)">
-          <div class="grid items-center" style="grid-template-columns:1.1fr 0.9fr;gap:3rem">
+          <div class="grid items-center hero-grid" style="grid-template-columns:1.1fr 0.9fr;gap:3rem">
             <div>
               <div class="eyebrow hero-el">YOUR NEXT GREAT READ AWAITS</div>
               <h1 class="font-serif hero-el" style="margin:1rem 0">Find a book worth<br/>getting <em style="color:var(--burgundy);font-style:italic">lost in.</em></h1>
@@ -65,15 +67,16 @@ export default {
       <!-- FEATURED -->
       <section class="container-wide" style="padding-block:clamp(2rem,5vw,4rem)">
         ${sectionHead('Featured Reads', 'Featured this week', { href: 'explore.html', label: 'Browse all' })}
+        ${featured ? `
         <div class="grid" style="grid-template-columns:0.8fr 1.2fr;gap:2.5rem;align-items:start">
-          <a href="book.html?id=${featured.id}" class="book-card block" data-reveal style="max-width:100px">
-            ${cover(featured, { className: '' })}
-            <div class="mt-3">${meta(featured)}</div>
-          </a>
+          <div class="book-card block" data-reveal style="width:240px;max-width:240px">
+            ${cover(featured, { className: 'cover--featured', actions: false })}
+            <div class="mt-3">${meta(featured, { linked: false })}</div>
+          </div>
           <div data-reveal>
             <div class="eyebrow mb-2">EDITOR’S CHOICE</div>
             <h3 class="font-serif" style="font-size:2rem">${featured.title}</h3>
-            <p class="muted mt-1">${authorName(featured.author)} · ${genreById[featured.genre].name}</p>
+            <p class="muted mt-1">${authorName(featured.author)} · ${genreById[featured.genre]?.name || ''}</p>
             <div class="mt-2">${stars(featured.rating)}</div>
             <p class="lede mt-4" style="max-width:46ch">${featured.description}</p>
             <div class="flex gap-3 mt-5">
@@ -82,6 +85,7 @@ export default {
             </div>
           </div>
         </div>
+        ` : '<p class="muted" data-reveal>No books available yet. Please make sure the backend is running and seeded.</p>'}
       </section>
 
       <!-- POPULAR -->
@@ -92,14 +96,14 @@ export default {
 
       <!-- GENRES -->
       <section class="container-wide" style="padding-block:clamp(2rem,5vw,4rem)">
-        ${sectionHead('Explore by Genre', 'Find your kind of story')}
-        <div class="genre-grid" id="genre-grid" data-reveal></div>
+        ${sectionHead('Explore by Genre', 'Find your kind of story', { href: 'categories.html', label: 'View all' })}
+        <div class="bento" id="genre-grid" data-reveal></div>
       </section>
 
       <!-- NEW ARRIVALS -->
       <section class="container-wide" style="padding-block:clamp(2rem,5vw,4rem)">
         ${sectionHead('New Arrivals', 'Fresh to the shelf', { href: 'explore.html', label: 'Explore' })}
-        <div class="book-grid book-grid--lg" data-reveal>${newArrivals.map((b) => bookCard(b)).join('')}</div>
+        <div class="book-grid" style="grid-template-columns:repeat(auto-fill,160px);gap:1.75rem;justify-content:start" data-reveal>${newArrivals.map((b) => bookCard(b)).join('')}</div>
       </section>
 
       <!-- CONTINUE READING -->
@@ -112,15 +116,15 @@ export default {
       <!-- EDITORIAL RECOMMENDATION -->
       <section class="container-wide" style="padding-block:clamp(3rem,6vw,5rem)">
         <div class="card editorial-pick" data-reveal>
-          <div class="grid items-center" style="grid-template-columns:0.7fr 1.3fr;gap:2.5rem">
-            <a href="book.html?id=${editorPick.id}" style="display:block;max-width:100px">${cover(editorPick, { className: '', actions: false })}</a>
-            <div>
+          <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap">
+            <div style="flex:1 1 380px;min-width:300px">
               <div class="eyebrow mb-3">EDITOR’S PICK</div>
               <h3 class="font-serif" style="font-size:2.4rem">${editorPick.title}</h3>
               <p class="muted mt-1">${authorName(editorPick.author)} · ${genreById[editorPick.genre].name}</p>
               <p class="lede mt-4" style="max-width:52ch">${editorPick.description}</p>
               <a class="btn btn--primary mt-5" href="book.html?id=${editorPick.id}">Discover this book ${icon('arrow-right', { size: 16 })}</a>
             </div>
+            <div style="flex:0 1 300px;min-width:240px;width:min(300px,100%);margin-inline-start:auto">${cover(editorPick, { className: '', actions: false })}</div>
           </div>
         </div>
       </section>
@@ -128,7 +132,7 @@ export default {
       <!-- AUTHORS -->
       <section class="container-wide" style="padding-block:clamp(2rem,5vw,4rem)">
         ${sectionHead('Authors Worth Discovering', 'Voices behind the books', { href: 'authors.html', label: 'All authors' })}
-        <div class="grid gap-4" style="grid-template-columns:repeat(auto-fill,minmax(260px,1fr))" data-reveal id="authors-row"></div>
+        <div class="authors-grid" style="margin-top:1.5rem" data-reveal id="authors-row"></div>
       </section>
 
       <!-- COLLECTIONS -->
@@ -154,7 +158,7 @@ export default {
               <div><div class="stat-num">${stats.completed + 48}</div><div class="muted text-sm">Books finished</div></div>
               <div><div class="stat-num">${stats.pagesRead + 2940}</div><div class="muted text-sm">Pages read</div></div>
               <div><div class="stat-num">${stats.streak + 6}</div><div class="muted text-sm">Day streak</div></div>
-              <div><div class="stat-num">${dataService.books.length}</div><div class="muted text-sm">Titles</div></div>
+              <div><div class="stat-num">${dataService.cache.books.length}</div><div class="muted text-sm">Titles</div></div>
             </div>
           </div>
         </div>
@@ -192,18 +196,18 @@ export default {
         'b-city-of-ideas',       // philosophy, forest
         'b-north-window'         // mystery, deep forest green
       ].map((id) => dataService.get(id)).filter(Boolean);
-      // Anchored to the right column of the hero. Each cover has its own
-      // size, rotation, and z-index so the stack reads as curated objects
-      // laid on a desk, not a uniform grid.
+      // Anchored to the right column of the hero. The four covers sit as one
+      // tight, fanned cluster — side by side with slight overlap and subtle
+      // rotations, like books stood together on a desk.
       const positions = [
-        // Back / left: largest, slight CCW, deep shadow
-        { left: '0%',  top: '14%', w: 168, r: -7,  z: 1, depth: 'back' },
-        // Center, slightly forward: tall
-        { left: '32%', top: '2%',  w: 184, r:  3,  z: 3, depth: 'front' },
-        // Right back: medium, slight CW
-        { left: '58%', top: '12%', w: 158, r:  6,  z: 2, depth: 'mid' },
-        // Bottom forward: smaller, stronger CW, the leaning accent
-        { left: '18%', top: '52%', w: 152, r:  9,  z: 4, depth: 'front' }
+        // Far left of the arc: tilted slightly CCW, lowest z
+        { left: '0%',  top: '28%', w: 160, r: -8, z: 1, depth: 'back' },
+        // Left-center: tallest, highest in the arc
+        { left: '24%', top: '16%', w: 175, r: -3, z: 2, depth: 'front' },
+        // Right-center: nearly upright
+        { left: '49%', top: '22%', w: 150, r:  3, z: 3, depth: 'mid' },
+        // Far right: tilted slightly CW, front of the cluster
+        { left: '69%', top: '26%', w: 145, r:  9, z: 4, depth: 'front' }
       ];
       comp.innerHTML = picks.map((b, i) => {
         const p = positions[i % positions.length];
@@ -223,39 +227,32 @@ export default {
           <img src="${coverDataUri(b)}" onerror="this.onerror=null;this.src='${coverFallbackUri(b)}'" alt="" style="width:54px;height:81px;object-fit:cover;border-radius:4px" />
           <div class="flex-1 min-w-0">
             <div class="font-semibold truncate">${b.title}</div>
-            <div class="text-sm muted">${authorName(b.author)} · ${genreById[b.genre].name}</div>
+            <div class="text-sm muted">${authorName(b.author)} · ${genreById[b.genre]?.name || 'Unknown'}</div>
           </div>
           ${stars(b.rating)}
         </a>`).join('');
     }
 
-    // Genre grid
-    const gg = root.querySelector('#genre-grid');
-    if (gg) {
-      gg.innerHTML = genres.map((g) => `
-        <a class="genre-card" href="categories.html#${g.id}" style="--g:${g.color}">
-          <div class="genre-card__art" style="background:linear-gradient(135deg,${g.color},${g.color}cc)">${icon('book-open', { size: 26 })}</div>
-          <div class="genre-card__name">${g.name}</div>
-          <div class="genre-card__count">${dataService.byGenre(g.id).length} titles</div>
-        </a>`).join('');
-    }
+    // Genre grid — shared editorial Bento layout (same as Categories page)
+    initBentoGrid(root);
 
-    // Authors row
+    // Authors row — shared editorial card (same design as the Authors page)
     const ar = root.querySelector('#authors-row');
     if (ar) {
-      ar.innerHTML = dataService.authors.slice(0, 6).map((a) => `
-        <a class="card author-card p-5 block" href="authors.html#${a.id}">
-          <div class="avatar avatar--lg" style="background:${genreById[a.genres[0]]?.color || 'var(--burgundy)'};margin-bottom:1rem">${a.name.split(' ').map((w) => w[0]).join('').slice(0, 2)}</div>
-          <div class="font-semibold">${a.name}</div>
-          <div class="text-sm muted">${a.genres.map((g) => genreById[g]?.name).join(', ')}</div>
-          <div class="text-xs muted mt-2">${dataService.byAuthor(a.id).length} books</div>
-        </a>`).join('');
+      // Homepage-only editorial choice: show Stephen Hawking in place of
+      // Alfred Lansing in this row (the Authors page keeps the full list).
+      const swapLansingForHawking = (a) => a?.name === 'Alfred Lansing'
+        ? dataService.cache.authors.find((x) => x.name === 'Stephen Hawking')
+        : a;
+      const homeAuthors = dataService.cache.authors.slice(0, 6).map(swapLansingForHawking);
+      ar.innerHTML = homeAuthors.map((a) => authorCard(a, dataService.byAuthor(a.id), { href: `authors.html#${a.id}` })).join('');
+      loadPortraitsThenBind(ar, homeAuthors);
     }
 
     // Collections row
     const cr = root.querySelector('#collections-row');
     if (cr) {
-      cr.innerHTML = dataService.collections.slice(0, 3).map((c) => collectionCard(c)).join('');
+      cr.innerHTML = dataService.cache.collections.slice(0, 3).map((c) => collectionCard(c)).join('');
     }
 
     // Hero book composition: entrance + per-cover hover lift

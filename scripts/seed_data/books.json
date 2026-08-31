@@ -1,0 +1,1561 @@
+[
+  {
+    "id": "b-the-tenth-quiet",
+    "title": "To Kill a Mockingbird",
+    "author": "a-harper-lee",
+    "genre": "fiction",
+    "description": "A childhood in Depression-era Alabama becomes the frame for one of literature's great moral trials, as lawyer Atticus Finch defends an innocent man and teaches his children what courage means.",
+    "tags": [
+      "classic",
+      "justice",
+      "coming-of-age"
+    ],
+    "rating": 4.3,
+    "pages": 336,
+    "publicationYear": 1960,
+    "language": "English",
+    "isNew": true,
+    "isPopular": true,
+    "editorPick": true,
+    "isbn": "9780099549482",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "Maycomb in the 1930s seen through a child's eyes, where Boo Radley is a rumor and summers are long"
+      },
+      {
+        "title": "Part Two",
+        "seed": "Atticus takes the case nobody in town wants him to take and explains why to his children"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the trial of Tom Robinson unfolds in a courtroom where the verdict is decided before it begins"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the aftermath, and what a man named Boo Radley finally shows them about their neighbors"
+      }
+    ],
+    "readingTime": 440
+  },
+  {
+    "id": "b-north-window",
+    "title": "And Then There Were None",
+    "author": "a-christie",
+    "genre": "mystery",
+    "description": "Ten strangers are invited to an island off the Devon coast. One by one, they begin to die — each in the manner of a nursery rhyme hanging on the wall. The defining locked-circle mystery.",
+    "tags": [
+      "classic",
+      "locked-island",
+      "puzzle"
+    ],
+    "rating": 4.3,
+    "pages": 272,
+    "publicationYear": 1939,
+    "language": "English",
+    "isPopular": true,
+    "isbn": "9780062073488",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "ten guests arrive on Soldier Island, each lured by a different lie, and a recorded voice names their crimes"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the first death is ruled accidental, but the nursery rhyme on the wall is being followed exactly"
+      },
+      {
+        "title": "Part Three",
+        "seed": "panic sets in as the count dwindles and everyone realizes the killer must be one of them"
+      },
+      {
+        "title": "Part Four",
+        "seed": "a confession in a bottle explains the method, the motive, and the impossible arithmetic of guilt"
+      }
+    ],
+    "readingTime": 350
+  },
+  {
+    "id": "b-ledger-of-tides",
+    "title": "Sapiens",
+    "author": "a-harari",
+    "genre": "history",
+    "description": "A sweeping account of how an insignificant African ape came to dominate the planet — through cognitive revolutions, agricultural gambles, and fictions like money, empire, and law.",
+    "tags": [
+      "big-history",
+      "anthropology",
+      "civilization"
+    ],
+    "rating": 4.4,
+    "pages": 464,
+    "publicationYear": 2011,
+    "language": "English",
+    "isPopular": true,
+    "isbn": "9780062316097",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the cognitive revolution, and how shared fictions made large-scale cooperation possible"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the agricultural revolution as history's most successful fraud, told from the perspective of the wheat"
+      },
+      {
+        "title": "Part Three",
+        "seed": "money, empires, and religion as imagined orders that bind strangers into a single society"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the scientific revolution, capitalism, and whether we are happier than our ancestors"
+      }
+    ],
+    "readingTime": 600
+  },
+  {
+    "id": "b-second-law",
+    "title": "A Brief History of Time",
+    "author": "a-hawking",
+    "genre": "science",
+    "description": "Hawking guides readers from Aristotle to black holes and imaginary time, asking where the universe came from and whether it has an edge — without a single equation beyond E = mc².",
+    "tags": [
+      "cosmology",
+      "physics",
+      "classic"
+    ],
+    "rating": 4.2,
+    "pages": 212,
+    "publicationYear": 1988,
+    "language": "English",
+    "isNew": true,
+    "isbn": "9780553380163",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "from Aristotle to Newton, how our picture of the universe was built by asking better questions"
+      },
+      {
+        "title": "Part Two",
+        "seed": "space and time are not a stage but actors, curved by mass and bent by motion"
+      },
+      {
+        "title": "Part Three",
+        "seed": "black holes are not black, and what escapes them tells us where the universe keeps its information"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the arrow of time, imaginary time, and why the universe may need no beginning at all"
+      }
+    ],
+    "readingTime": 280
+  },
+  {
+    "id": "b-still-water",
+    "title": "milk and honey",
+    "author": "a-kaur",
+    "genre": "poetry",
+    "description": "A collection of poetry and prose about survival, love, loss, and femininity — four movements that walk from the bitterest hurt to the sweetest healing.",
+    "tags": [
+      "collection",
+      "love",
+      "healing"
+    ],
+    "rating": 4.1,
+    "pages": 208,
+    "publicationYear": 2014,
+    "language": "English",
+    "isNew": true,
+    "isPopular": true,
+    "editorPick": true,
+    "isbn": "9781449474256",
+    "chapters": [
+      {
+        "title": "The Hurting",
+        "seed": "poems of childhood wounds and the silences families keep"
+      },
+      {
+        "title": "The Loving",
+        "seed": "falling into love as an act of trust and surrender"
+      },
+      {
+        "title": "The Breaking",
+        "seed": "the end of love, and the self that remains after it leaves"
+      },
+      {
+        "title": "The Healing",
+        "seed": "learning to hold yourself, gently, in your own hands"
+      }
+    ],
+    "readingTime": 270
+  },
+  {
+    "id": "b-attention",
+    "title": "Thinking, Fast and Slow",
+    "author": "a-kahneman",
+    "genre": "psychology",
+    "description": "A Nobel laureate's lifetime of research distilled: the fast, intuitive System 1 and the slow, deliberate System 2 — and the biases that arise whenever the two disagree about reality.",
+    "tags": [
+      "cognition",
+      "bias",
+      "decision-making"
+    ],
+    "rating": 4.1,
+    "pages": 499,
+    "publicationYear": 2011,
+    "language": "English",
+    "isPopular": true,
+    "isbn": "9780374533557",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "two characters in the mind, the effortless intuitor and the lazy deliberate thinker"
+      },
+      {
+        "title": "Part Two",
+        "seed": "heuristics and biases, why we judge by ease and answer an easier question than the one asked"
+      },
+      {
+        "title": "Part Three",
+        "seed": "overconfidence, the illusion of validity, and the failure of expert prediction"
+      },
+      {
+        "title": "Part Four",
+        "seed": "two selves, experiencing and remembering, and why the ending decides the story"
+      }
+    ],
+    "readingTime": 650
+  },
+  {
+    "id": "b-whiteout",
+    "title": "Into the Wild",
+    "author": "a-krakauer",
+    "genre": "adventure",
+    "description": "In 1992 a young idealist named Christopher McCandless walked into the Alaskan wilderness carrying little more than a rifle and a copy of Tolstoy. Krakauer reconstructs the journey and the pull that led to it.",
+    "tags": [
+      "nonfiction",
+      "wilderness",
+      "true-story"
+    ],
+    "rating": 4,
+    "pages": 224,
+    "publicationYear": 1996,
+    "language": "English",
+    "isPopular": true,
+    "isbn": "9780385486804",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a decomposed body found in an abandoned bus, and the hitchhiker who left no address behind"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the two years of wandering that led Chris McCandless from Atlanta across the American west"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the trail of letters and kindnesses he left behind, and the family that never stopped looking"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the months inside the magic bus, the river that became a wall, and what the wild finally said back"
+      }
+    ],
+    "readingTime": 290
+  },
+  {
+    "id": "b-muralists",
+    "title": "The Story of Art",
+    "author": "a-gombrich",
+    "genre": "art",
+    "description": "The most famous art book in the world: Gombrich's single, continuous narrative from cave paintings to modernism, written to make the reader look — really look — for the first time.",
+    "tags": [
+      "art-history",
+      "classic",
+      "illustrated"
+    ],
+    "rating": 4.4,
+    "pages": 688,
+    "publicationYear": 1950,
+    "language": "English",
+    "isbn": "9780714832470",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "strange beginnings, how prehistoric and tribal art served ritual before it served beauty"
+      },
+      {
+        "title": "Part Two",
+        "seed": "greece, rome, and the discovery that art could aim at what the eye actually sees"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the renaissance and the long conquest of visual truth, from Giotto to Rembrandt"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the modern revolt, when artists stopped imitating appearances and started questioning the frame itself"
+      }
+    ],
+    "readingTime": 890
+  },
+  {
+    "id": "b-small-team",
+    "title": "Zero to One",
+    "author": "a-thiel",
+    "genre": "business",
+    "description": "Notes on startups, or how to build the future: Thiel argues that real progress comes not from copying what works but from creating something entirely new — going from zero to one.",
+    "tags": [
+      "startups",
+      "innovation",
+      "contrarian"
+    ],
+    "rating": 4.1,
+    "pages": 224,
+    "publicationYear": 2014,
+    "language": "English",
+    "isbn": "9780804139298",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "every moment in business happens only once, and monopoly, not competition, is the goal"
+      },
+      {
+        "title": "Part Two",
+        "seed": "why last-mover advantage beats first-mover, and how a company is valued by its future cash flows"
+      },
+      {
+        "title": "Part Three",
+        "seed": "secrets still exist, and finding one is the beginning of every great company"
+      },
+      {
+        "title": "Part Four",
+        "seed": "founders, sales, and the seven questions every business must answer before it begins"
+      }
+    ],
+    "readingTime": 290
+  },
+  {
+    "id": "b-city-of-ideas",
+    "title": "Meditations",
+    "author": "a-marcus-aurelius",
+    "genre": "philosophy",
+    "description": "The private notebooks of a Roman emperor, written on campaign and never meant for publication — the most intimate surviving record of Stoic philosophy practiced daily.",
+    "tags": [
+      "stoicism",
+      "classic",
+      "ethics"
+    ],
+    "rating": 4.2,
+    "pages": 304,
+    "publicationYear": 180,
+    "language": "English",
+    "isbn": "9780140449334",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "debts and lessons, a catalogue of what family and teachers gave him before he faced the world"
+      },
+      {
+        "title": "Part Two",
+        "seed": "begin each day by telling yourself you will meet the interfering, the ungrateful, the arrogant"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the obstacle is the way, and the mind that withdraws into itself needs no retreat"
+      },
+      {
+        "title": "Part Four",
+        "seed": "death, the brevity of fame, and doing the work of a human being without expectation of witness"
+      }
+    ],
+    "readingTime": 400
+  },
+  {
+    "id": "b-cold-case",
+    "title": "The Girl with the Dragon Tattoo",
+    "author": "a-larsson",
+    "genre": "crime",
+    "description": "A disgraced journalist and a brilliant, hostile hacker investigate a forty-year-old disappearance inside a powerful industrial family — and uncover a corridor of violence no one wanted opened.",
+    "tags": [
+      "thriller",
+      "investigation",
+      "sweden"
+    ],
+    "rating": 4.1,
+    "pages": 672,
+    "publicationYear": 2005,
+    "language": "English",
+    "isbn": "9780307454546",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a journalist loses a libel case, and a stranger begins compiling his entire life on paper"
+      },
+      {
+        "title": "Part Two",
+        "seed": "an old man asks him to solve the disappearance of a niece forty years after she vanished"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the researcher with the dragon tattoo breaks through, and the family album starts to confess"
+      },
+      {
+        "title": "Part Four",
+        "seed": "a killer is found, but the case turns back on the investigator before the Vanger file can close"
+      }
+    ],
+    "readingTime": 870
+  },
+  {
+    "id": "b-cosmos-within",
+    "title": "Cosmos",
+    "author": "a-sagan",
+    "genre": "science",
+    "description": "Sagan's luminous tour of fifteen billion years of cosmic evolution — from the library of Alexandria to the Voyager golden record — a book that taught a generation to feel the scale of the universe.",
+    "tags": [
+      "astronomy",
+      "classic",
+      "science-communication"
+    ],
+    "rating": 4.4,
+    "pages": 396,
+    "publicationYear": 1980,
+    "language": "English",
+    "isbn": "9780345539434",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the shore of the cosmic ocean, and how far a beam of light travels in a human lifetime"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the library of Alexandria and the scientists who first measured the world with shadows and wells"
+      },
+      {
+        "title": "Part Three",
+        "seed": "planets as worlds, and the Voyager spacecraft carrying earth's greeting to the stars"
+      },
+      {
+        "title": "Part Four",
+        "seed": "evolution of the brain, the lives of the stars, and who speaks for earth"
+      }
+    ],
+    "readingTime": 510
+  },
+  {
+    "id": "b-coast-road",
+    "title": "The Hunger Games",
+    "author": "a-suzanne-collins",
+    "genre": "ya",
+    "description": "In a ruined future America, Katniss Everdeen volunteers for a televised fight to the death in place of her sister — and turns an act of love into the spark of a rebellion.",
+    "tags": [
+      "dystopia",
+      "survival",
+      "rebellion"
+    ],
+    "rating": 4.3,
+    "pages": 374,
+    "publicationYear": 2008,
+    "language": "English",
+    "isbn": "9780439023481",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the reaping in district twelve, a name called in the square, and a sister stepping forward to die"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the capitol, the training, and a strategy built on being unforgettable rather than strong"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the arena begins, alliances form and burn, and every sponsor gift carries a message"
+      },
+      {
+        "title": "Part Four",
+        "seed": "two winners instead of one, a rule revoked, and berries that become an act of defiance"
+      }
+    ],
+    "readingTime": 490
+  },
+  {
+    "id": "b-factory-of-tomorrow",
+    "title": "The Innovator's Dilemma",
+    "author": "a-christensen",
+    "genre": "technology",
+    "description": "Why do great companies fail precisely when they do everything right? Christensen's theory of disruptive innovation explains why listening to your best customers can destroy your business.",
+    "tags": [
+      "disruption",
+      "management",
+      "classic"
+    ],
+    "rating": 4.2,
+    "pages": 336,
+    "publicationYear": 1997,
+    "language": "English",
+    "isbn": "9780062060242",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "why good management is exactly the wrong response, told through the failure of disk-drive makers"
+      },
+      {
+        "title": "Part Two",
+        "seed": "sustaining versus disruptive technologies, and the value networks that blind incumbents"
+      },
+      {
+        "title": "Part Three",
+        "seed": "how excavators, steel mills, and motorcycles prove the pattern across industries"
+      },
+      {
+        "title": "Part Four",
+        "seed": "managing disruptive change, small bets in small markets, and the resources of a new growth engine"
+      }
+    ],
+    "readingTime": 440
+  },
+  {
+    "id": "b-her-own-ink",
+    "title": "Steve Jobs",
+    "author": "a-isaacson",
+    "genre": "biography",
+    "description": "The definitive biography, drawn from more than forty interviews with Jobs and hundreds with family, friends, rivals, and colleagues — a portrait of genius, obsession, and its costs.",
+    "tags": [
+      "business",
+      "innovation",
+      "biography"
+    ],
+    "rating": 4.3,
+    "pages": 656,
+    "publicationYear": 2011,
+    "language": "English",
+    "isbn": "9781451648539",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "adopted, unlovely, and fascinated by the garages of a california valley learning to build futures"
+      },
+      {
+        "title": "Part Two",
+        "seed": "apple's founding, the garage, and a temperament that divided the world into geniuses and bozos"
+      },
+      {
+        "title": "Part Three",
+        "seed": "exile from his own company, the wilderness years, and the animation studio that saved him"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the return, the imac, the iphone, and a design philosophy that bent technology to taste"
+      }
+    ],
+    "readingTime": 850
+  },
+  {
+    "id": "b-inheritance-of-rooms",
+    "title": "Pride and Prejudice",
+    "author": "a-jane-austen",
+    "genre": "fiction",
+    "description": "Elizabeth Bennet has principles; Mr. Darcy has pride and a large estate. Austen's comedy of manners turns a country dance into a negotiation about money, class, and the slow education of two stubborn hearts.",
+    "tags": [
+      "classic",
+      "romance",
+      "satire"
+    ],
+    "rating": 4.3,
+    "pages": 480,
+    "publicationYear": 1813,
+    "language": "English",
+    "isbn": "9780141439518",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a new neighbor arrives at netherfield and the whole village rearranges itself around his income"
+      },
+      {
+        "title": "Part Two",
+        "seed": "a first insult at a dance becomes the lens through which every later kindness is misread"
+      },
+      {
+        "title": "Part Three",
+        "seed": "a proposal refused in the rain, and a letter that begins the long correction of a judgment"
+      },
+      {
+        "title": "Part Four",
+        "seed": "pemberley, a scandal, and the discovery that pride and prejudice were shared between them"
+      }
+    ],
+    "readingTime": 620
+  },
+  {
+    "id": "b-science-of-sleep",
+    "title": "Quiet",
+    "author": "a-susan-cain",
+    "genre": "psychology",
+    "description": "At least a third of us are introverts, and the world is built for the other two-thirds. Cain's landmark book makes the case for the power of the quiet in a culture that can't stop talking.",
+    "tags": [
+      "introversion",
+      "temperament",
+      "society"
+    ],
+    "rating": 4.1,
+    "pages": 368,
+    "publicationYear": 2012,
+    "language": "English",
+    "isbn": "9780307352156",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the extrovert ideal, from Dale Carnegie to the open-plan office, and who it leaves behind"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the biology of temperament, high-reactive infants, and how temperament is neither destiny nor nothing"
+      },
+      {
+        "title": "Part Three",
+        "seed": "do all cultures have an extrovert ideal, from a wall street pitch to a quiet temple in california"
+      },
+      {
+        "title": "Part Four",
+        "seed": "how to love, teach, and parent the quiet, and when to act out of character for something you believe in"
+      }
+    ],
+    "readingTime": 480
+  },
+  {
+    "id": "b-avant-garde",
+    "title": "Ways of Seeing",
+    "author": "a-berger",
+    "genre": "art",
+    "description": "A short, radical book about looking: how oil painting served property and publicity, how the nude is seen, and how the camera changed what an image is forever.",
+    "tags": [
+      "criticism",
+      "media",
+      "classic"
+    ],
+    "rating": 4,
+    "pages": 176,
+    "publicationYear": 1972,
+    "language": "English",
+    "isbn": "9780141035796",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the act of looking comes before words, and the reciprocal nature of vision is where meaning begins"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the nude, and how being seen by others became a convention of European painting"
+      },
+      {
+        "title": "Part Three",
+        "seed": "oil painting as a celebration of private property, owning images as a way of owning the world"
+      },
+      {
+        "title": "Part Four",
+        "seed": "publicity, glamour, and the advertisement as the last great art form of consumer happiness"
+      }
+    ],
+    "readingTime": 230
+  },
+  {
+    "id": "b-the-quiet-severance",
+    "title": "Man's Search for Meaning",
+    "author": "a-frankl",
+    "genre": "philosophy",
+    "description": "A psychiatrist's memoir of surviving the Nazi death camps and the psychology he built from it: those who found meaning in suffering could endure almost anything — and meaning is available to everyone.",
+    "tags": [
+      "memoir",
+      "holocaust",
+      "meaning"
+    ],
+    "rating": 4.4,
+    "pages": 200,
+    "publicationYear": 1946,
+    "language": "English",
+    "isbn": "9780807014295",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "arrival at auschwitz, and the stripping away of everything except the last human freedom"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the phases of a prisoner's mind, from shock to apathy to the strange suffering of liberation"
+      },
+      {
+        "title": "Part Three",
+        "seed": "logotherapy, will to meaning, and why happiness cannot be pursued but only ensue"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the tragic triad of pain, guilt, and death, and how to turn suffering into achievement"
+      }
+    ],
+    "readingTime": 260
+  },
+  {
+    "id": "b-the-long-reckoning",
+    "title": "The Big Sleep",
+    "author": "a-chandler",
+    "genre": "crime",
+    "description": "When the Sternwood family hires Philip Marlowe to trace a blackmail debt, the detective finds two sisters, a vanished chauffeur, and more murder than anyone paid for.",
+    "tags": [
+      "noir",
+      "detective",
+      "classic"
+    ],
+    "rating": 4,
+    "pages": 274,
+    "publicationYear": 1939,
+    "language": "English",
+    "isbn": "9780394758284",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a dying general, a case of blackmail, and marlowe walking into the Sternwood garden for the first time"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the bookshop, the missing chauffeur, and a body pulled from an oil sump off the coast road"
+      },
+      {
+        "title": "Part Three",
+        "seed": "a pornographer, a gambler, and the truth about where the rain never falls"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the last confession, and why some cases are solved by refusing to hand them over"
+      }
+    ],
+    "readingTime": 360
+  },
+  {
+    "id": "b-tides-of-empire",
+    "title": "Long Walk to Freedom",
+    "author": "a-mandela",
+    "genre": "biography",
+    "description": "Mandela tells his own story: a village boyhood, the law practice that made him a revolutionary, twenty-seven years in prison, and the Presidency that forgave the jailer.",
+    "tags": [
+      "autobiography",
+      "apartheid",
+      "leadership"
+    ],
+    "rating": 4.4,
+    "pages": 656,
+    "publicationYear": 1994,
+    "language": "English",
+    "isbn": "9780316548182",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a thrashing ox and a childhood in the transkei, where stories of ancestors kept courage alive"
+      },
+      {
+        "title": "Part Two",
+        "seed": "johannesburg, the law firm, and the slow discovery that freedom was a conversation with the state"
+      },
+      {
+        "title": "Part Three",
+        "seed": "rivonia, the dock, and the speech from which only a biography of prison could follow"
+      },
+      {
+        "title": "Part Four",
+        "seed": "robben island, the lime quarry, and twenty-seven years spent making prison into a university"
+      }
+    ],
+    "readingTime": 850
+  },
+  {
+    "id": "b-quantum-gardens",
+    "title": "The Selfish Gene",
+    "author": "a-dawkins",
+    "genre": "science",
+    "description": "Dawkins rewrites the logic of evolution from the gene's point of view: bodies are survival machines, altruism has a ledger, and memes are ideas that reproduce like organisms.",
+    "tags": [
+      "evolution",
+      "biology",
+      "classic"
+    ],
+    "rating": 4.2,
+    "pages": 360,
+    "publicationYear": 1976,
+    "language": "English",
+    "isbn": "9780198788607",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "why are people, and the primordial soup where a replicator first learned to copy itself"
+      },
+      {
+        "title": "Part Two",
+        "seed": "survival machines, and how a gene that helps another can still be selfish"
+      },
+      {
+        "title": "Part Three",
+        "seed": "aggression, the stable strategy, and why animals rarely fight to the death"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the meme, a new replicator, and what happens when ideas start evolving in us"
+      }
+    ],
+    "readingTime": 470
+  },
+  {
+    "id": "b-river-of-words",
+    "title": "One Hundred Years of Solitude",
+    "author": "a-marquez",
+    "genre": "fiction",
+    "description": "The Buendía family builds Macondo out of hope and repeats itself for a century — wars, golden fish, ascensions, and the rain of yellow flowers that marks love remembered.",
+    "tags": [
+      "magical-realism",
+      "family-saga",
+      "classic"
+    ],
+    "rating": 4.3,
+    "pages": 417,
+    "publicationYear": 1967,
+    "language": "English",
+    "isbn": "9780060883287",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a founding family haunted by the memory of incest, and a gypsy who brings magnets to a village of adobe houses"
+      },
+      {
+        "title": "Part Two",
+        "seed": "colonel aureliano buendía fights thirty-two wars and loses every one of them"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the banana company arrives with trains and fever, and leaves three thousand people in a freight car"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the last aureliano reads the manuscripts of melquíades as the wind takes macondo away"
+      }
+    ],
+    "readingTime": 540
+  },
+  {
+    "id": "b-mind-in-balance",
+    "title": "Atomic Habits",
+    "author": "a-clear",
+    "genre": "self",
+    "description": "Tiny changes, remarkable results: Clear's four laws of behavior change turn identity, not motivation, into the engine of habit — one percent better every day.",
+    "tags": [
+      "habits",
+      "behavior",
+      "productivity"
+    ],
+    "rating": 4.3,
+    "pages": 320,
+    "publicationYear": 2018,
+    "language": "English",
+    "isbn": "9780735211292",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the surprising power of atomic habits, and why systems beat goals every single time"
+      },
+      {
+        "title": "Part Two",
+        "seed": "make it obvious, and the environment as the invisible hand shaping every choice"
+      },
+      {
+        "title": "Part Three",
+        "seed": "make it attractive and make it easy, how cravings are engineered and friction decides everything"
+      },
+      {
+        "title": "Part Four",
+        "seed": "make it satisfying, the cardinal rule of behavior change, and identity as the deepest layer of habit"
+      }
+    ],
+    "readingTime": 420
+  },
+  {
+    "id": "b-summer-of-ash",
+    "title": "Endurance",
+    "author": "a-lansing",
+    "genre": "adventure",
+    "description": "In 1914 Ernest Shackleton's ship was crushed by Antarctic ice, stranding twenty-eight men for nearly two years. Lansing's account of their survival is one of the great true stories.",
+    "tags": [
+      "exploration",
+      "survival",
+      "true-story"
+    ],
+    "rating": 4.5,
+    "pages": 416,
+    "publicationYear": 1959,
+    "language": "English",
+    "isbn": "9780465062881",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the weddell sea closes like a trap, and endurance freezes into the ice a hundred miles from land"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the ship is crushed, and twenty-eight men camp on drifting floes with three small boats"
+      },
+      {
+        "title": "Part Three",
+        "seed": "elephant island, and an 800-mile open-boat voyage through the worst ocean on earth"
+      },
+      {
+        "title": "Part Four",
+        "seed": "south georgia crossed by moonlight, and a rescue that took four attempts to finish"
+      }
+    ],
+    "readingTime": 540
+  },
+  {
+    "id": "b-color-and-courage",
+    "title": "The Diary of a Young Girl",
+    "author": "a-anne-frank",
+    "genre": "biography",
+    "description": "Written in hiding in an Amsterdam annex between 1942 and 1944, Anne Frank's diary is the voice of a funny, furious, brilliant teenager confronting history with total honesty.",
+    "tags": [
+      "diary",
+      "history",
+      "classic"
+    ],
+    "rating": 4.4,
+    "pages": 283,
+    "publicationYear": 1947,
+    "language": "English",
+    "isbn": "9780553296983",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the annex, a diary for a birthday, and a family disappearing behind a swinging bookcase"
+      },
+      {
+        "title": "Part Two",
+        "seed": "eight people in hiding, the sound of the westertoren bells, and the arithmetic of silence"
+      },
+      {
+        "title": "Part Three",
+        "seed": "peter, first love at thirteen, and the thinking that grows in the margins of fear"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the last entry, three days before the annex is betrayed and the voice falls silent"
+      }
+    ],
+    "readingTime": 370
+  },
+  {
+    "id": "b-durable",
+    "title": "The Soul of a New Machine",
+    "author": "a-kidder",
+    "genre": "technology",
+    "description": "Inside Data General in the late 1970s, a team of young engineers secretly builds a new computer against impossible deadlines. Kidder made engineering read like a novel — and won a Pulitzer.",
+    "tags": [
+      "engineering",
+      "nonfiction",
+      "computers"
+    ],
+    "rating": 4.2,
+    "pages": 293,
+    "publicationYear": 1981,
+    "language": "English",
+    "isbn": "9780380719702",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a company falling behind, and a manager who signs up to build a machine no one assigned him"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the basement of westborough, mushroom managers, and engineers who sign their work in microcode"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the race to tape-out, sixteen-hour days, and debugging by feel at three in the morning"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the eagle works, the machine ships, and the men who built it discover what it cost them"
+      }
+    ],
+    "readingTime": 380
+  },
+  {
+    "id": "b-the-quiet-republic",
+    "title": "SPQR",
+    "author": "a-mary-beard",
+    "genre": "history",
+    "description": "Beard retells a thousand years of Roman history — from a village on the Tiber to an empire of fifty million — asking who the Romans really were and what \"Rome\" meant to the people it ruled.",
+    "tags": [
+      "rome",
+      "classics",
+      "empire"
+    ],
+    "rating": 4.3,
+    "pages": 606,
+    "publicationYear": 2015,
+    "language": "English",
+    "isbn": "9780871404237",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a river, a hill, and Romulus, taking the founding stories apart before putting history back together"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the republic, senators in mud-stained togas, and how a city of citizens learned to argue with itself"
+      },
+      {
+        "title": "Part Three",
+        "seed": "empire without a plan, from Carthage to Britain, and the provinces that made Rome richer than Rome"
+      },
+      {
+        "title": "Part Four",
+        "seed": "emperors, subjects, and the million strangers who turned a city into a civilization"
+      }
+    ],
+    "readingTime": 790
+  },
+  {
+    "id": "b-the-garden-detective",
+    "title": "In the Woods",
+    "author": "a-tana-french",
+    "genre": "mystery",
+    "description": "A twelve-year-old girl is found dead in an Irish woodland — at the exact site where, twenty years earlier, two children vanished and the third was found with no memory. Detective Ryan investigates both.",
+    "tags": [
+      "psychological",
+      "irish",
+      "literary"
+    ],
+    "rating": 3.9,
+    "pages": 429,
+    "publicationYear": 2007,
+    "language": "English",
+    "isbn": "9780143113492",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a summer of archaeological digging, a child's body among the stones, and a detective who was once the boy who survived this wood"
+      },
+      {
+        "title": "Part Two",
+        "seed": "knocknaree, the vanished of 1984, and a partner who asks the questions Ryan is afraid to answer"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the bond breaks, the evidence turns inward, and every witness remembers a different wood"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the case closes and the memory never does, and what the woods gave back is not the truth"
+      }
+    ],
+    "readingTime": 560
+  },
+  {
+    "id": "b-first-light-of-reason",
+    "title": "Sophie's World",
+    "author": "a-gaarder",
+    "genre": "philosophy",
+    "description": "A fourteen-year-old girl receives mysterious letters — \"Who are you? Where does the world come from?\" — and with them a complete course in philosophy that slowly becomes a mystery about herself.",
+    "tags": [
+      "philosophy",
+      "novel",
+      "education"
+    ],
+    "rating": 4,
+    "pages": 544,
+    "publicationYear": 1991,
+    "language": "English",
+    "isbn": "9780374530716",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the garden of eden, three strange letters, and a course in everything beginning with the myths"
+      },
+      {
+        "title": "Part Two",
+        "seed": "socrates, athens, and a white rabbit pulled from a hat that we have all stopped marveling at"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the middle ages to freud, and a girl who notices the postcards are addressed to someone else"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the major's cabin, a mirror that winks, and the discovery that Sophie's world is being written"
+      }
+    ],
+    "readingTime": 710
+  },
+  {
+    "id": "b-the-widow-of-rooms",
+    "title": "Nineteen Eighty-Four",
+    "author": "a-george-orwell",
+    "genre": "fiction",
+    "description": "In a world of telescreens, doublethink, and the Ministry of Truth, Winston Smith commits the last crime left: he thinks for himself, and falls in love. Orwell's nightmare has never faded.",
+    "tags": [
+      "dystopia",
+      "totalitarianism",
+      "classic"
+    ],
+    "rating": 4.2,
+    "pages": 328,
+    "publicationYear": 1949,
+    "language": "English",
+    "isbn": "9780451524935",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a cold day in april, and the clocks striking thirteen as winston begins a diary he cannot keep"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the ministry of truth, rewriting the past daily, and a note that reads i love you"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the room above the junk shop, a paperweight of glass, and the belief that the proles are the future"
+      },
+      {
+        "title": "Part Four",
+        "seed": "room 101, the betrayal of julia, and learning to love big brother"
+      }
+    ],
+    "readingTime": 430
+  },
+  {
+    "id": "b-the-machines-we-trust",
+    "title": "The Immortal Life of Henrietta Lacks",
+    "author": "a-skloot",
+    "genre": "science",
+    "description": "Her cells — taken without consent in 1951 — became the first immortal human cell line and made modern medicine possible. Skloot tells the science and the family history that medicine ignored.",
+    "tags": [
+      "medicine",
+      "ethics",
+      "nonfiction"
+    ],
+    "rating": 4.4,
+    "pages": 381,
+    "publicationYear": 2010,
+    "language": "English",
+    "isbn": "9781400052189",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a young mother in the colored ward of johns hopkins, a sample taken, and cells that refused to die"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the first immortal cells, a factory of vials, and polio vaccines grown on a woman nobody named"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the lacks family learns what HeLa means, decades after the cells circled the world"
+      },
+      {
+        "title": "Part Four",
+        "seed": "skloot and deborah in a hospital basement, finally looking at their mother's cells together"
+      }
+    ],
+    "readingTime": 500
+  },
+  {
+    "id": "b-her-handwriting",
+    "title": "Guns, Germs, and Steel",
+    "author": "a-diamond",
+    "genre": "history",
+    "description": "Why did Europeans conquer the world and not the other way around? Diamond's answer is not genes or genius but geography: the axes of continents, domesticable animals, and the germs they shared.",
+    "tags": [
+      "geography",
+      "anthropology",
+      "big-history"
+    ],
+    "rating": 4,
+    "pages": 480,
+    "publicationYear": 1997,
+    "language": "English",
+    "isbn": "9780393354324",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "yali's question on a new guinea beach, and why the obvious answers are the wrong ones"
+      },
+      {
+        "title": "Part Two",
+        "seed": "anna's apples, the fertile crescent, and thirteen species that changed what farming could build"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the axes of the continents, and why ideas travel east-west faster than they travel north-south"
+      },
+      {
+        "title": "Part Four",
+        "seed": "germs as the silent conquistador, and writing, steel, and horses as the rest of the story"
+      }
+    ],
+    "readingTime": 620
+  },
+  {
+    "id": "b-the-engineer-of-small-things",
+    "title": "Deep Work",
+    "author": "a-newport",
+    "genre": "self",
+    "description": "Focus has become the rarest skill in the economy. Newport argues for deep work — cognitively demanding, distraction-free concentration — and prescribes rules for reclaiming it.",
+    "tags": [
+      "focus",
+      "productivity",
+      "work"
+    ],
+    "rating": 4.1,
+    "pages": 304,
+    "publicationYear": 2016,
+    "language": "English",
+    "isbn": "9781455586691",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "deep work is valuable, and why the ability to concentrate has become the scarce skill of the new economy"
+      },
+      {
+        "title": "Part Two",
+        "seed": "shallow work is a trap, busyness as a proxy for productivity in a workplace without metrics"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the rules of the ritual, choosing a philosophy, and embracing boredom as training"
+      },
+      {
+        "title": "Part Four",
+        "seed": "quit the attention reserve, drain the shallows, and schedule every minute of the day"
+      }
+    ],
+    "readingTime": 400
+  },
+  {
+    "id": "b-sleeping-cities",
+    "title": "Silent Spring",
+    "author": "a-carson",
+    "genre": "science",
+    "description": "A quiet, furious book about pesticides that became the birth of environmentalism: Carson showed how DDT moved through soil, water, and birdsong — and how a spring without birds was possible.",
+    "tags": [
+      "environment",
+      "ecology",
+      "classic"
+    ],
+    "rating": 4,
+    "pages": 400,
+    "publicationYear": 1962,
+    "language": "English",
+    "isbn": "9780618249060",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a town where no birds sing, a fable for tomorrow drawn from the chemistry already in the fields"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the obligation to endure, and elixirs of death moving through soil into water into bone"
+      },
+      {
+        "title": "Part Three",
+        "seed": "rivers of death, the elm trees, and the robins that stopped coming back"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the other road, biological control, and the choice between chemicals and sense"
+      }
+    ],
+    "readingTime": 520
+  },
+  {
+    "id": "b-the-shape-of-joy",
+    "title": "Ariel",
+    "author": "a-plath",
+    "genre": "poetry",
+    "description": "The collection Plath arranged in the last months of her life: poems of velocity, fury, and luminous control — \"Lady Lazarus\", \"Daddy\", \"Ariel\" — that reset the boundaries of confessional poetry.",
+    "tags": [
+      "collection",
+      "confessional",
+      "classic"
+    ],
+    "rating": 4.3,
+    "pages": 112,
+    "publicationYear": 1965,
+    "language": "English",
+    "isbn": "9780060723712",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "morning song, love set going like a fat gold watch, and the arrival of a new voice"
+      },
+      {
+        "title": "Part Two",
+        "seed": "lady lazarus eats men like air, and the art of dying as a theatrical comeback"
+      },
+      {
+        "title": "Part Three",
+        "seed": "daddy, a shoe in which the foot has lived for thirty years, and a poem that says everything twice"
+      },
+      {
+        "title": "Part Four",
+        "seed": "ariel, the ride at dawn, and the arrow that flies into the red eye of the sun"
+      }
+    ],
+    "readingTime": 150
+  },
+  {
+    "id": "b-the-cartographer-of-souls",
+    "title": "The Great Gatsby",
+    "author": "a-fitzgerald",
+    "genre": "fiction",
+    "description": "Jay Gatsby throws the most extravagant parties on Long Island for one reason: to be seen by a woman across the bay. A perfect short novel about wealth, longing, and the green light.",
+    "tags": [
+      "classic",
+      "jazz-age",
+      "american"
+    ],
+    "rating": 3.9,
+    "pages": 180,
+    "publicationYear": 1925,
+    "language": "English",
+    "isbn": "9780743273565",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a narrator who reserves judgments, a mansion of parties, and a man who reaches toward green light"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the valley of ashes, the eyes of doctor t. j. eckleburg, and a lunch with a man who fixed the world series"
+      },
+      {
+        "title": "Part Three",
+        "seed": "a reunion across a table of flowers, and the past that gatsby insists can be repeated"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the heat, the plaza hotel, a yellow car coming back from new york, and boats against the current"
+      }
+    ],
+    "readingTime": 230
+  },
+  {
+    "id": "b-a-short-history-of-doubt",
+    "title": "The Myth of Sisyphus",
+    "author": "a-camus",
+    "genre": "philosophy",
+    "description": "Camus takes on the one truly serious philosophical problem — suicide — and answers it with lucidity: even in a universe without meaning, the struggle itself toward the heights is enough to fill a heart.",
+    "tags": [
+      "absurdism",
+      "essays",
+      "classic"
+    ],
+    "rating": 4,
+    "pages": 192,
+    "publicationYear": 1942,
+    "language": "English",
+    "isbn": "9780679733737",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "an absurd reasoning, and why the one truly serious philosophical problem is suicide"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the absurd man, living without appeal, and Don Juan as a model of lucid passion"
+      },
+      {
+        "title": "Part Three",
+        "seed": "absurd creation, art as the experience of living one's own absurdity to the end"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the myth of sisyphus, and the moment the rock is rolling back down when the walk begins"
+      }
+    ],
+    "readingTime": 250
+  },
+  {
+    "id": "b-the-lighthouse-letters",
+    "title": "The Remains of the Day",
+    "author": "a-ishiguro",
+    "genre": "fiction",
+    "description": "In 1956 an English butler drives west to meet the housekeeper he loved and lost, and his diary of the trip becomes a quiet, devastating reckoning with dignity, duty, and a life spent in service.",
+    "tags": [
+      "literary",
+      "england",
+      "memory"
+    ],
+    "rating": 4.2,
+    "pages": 258,
+    "publicationYear": 1989,
+    "language": "English",
+    "isbn": "9780679731726",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "a day in the country, darlington hall sold to an american, and stevens setting out in a ford"
+      },
+      {
+        "title": "Part Two",
+        "seed": "salisbury, dignity in one's profession, and memories of a housekeeper who laughed on the stairs"
+      },
+      {
+        "title": "Part Three",
+        "seed": "lord darlington and the appeasers, the unfortunate evenings, and what serving a great man cost"
+      },
+      {
+        "title": "Part Four",
+        "seed": "moscombe, the meeting by the pier, and the evening that remains for every man"
+      }
+    ],
+    "readingTime": 340
+  },
+  {
+    "id": "b-the-patient-investor",
+    "title": "Good to Great",
+    "author": "a-jim-collins",
+    "genre": "business",
+    "description": "Collins and his research team asked why some companies leap from average to exceptional and stay there. The answers — Level 5 leadership, the hedgehog concept, the flywheel — became management canon.",
+    "tags": [
+      "management",
+      "research",
+      "leadership"
+    ],
+    "rating": 4.2,
+    "pages": 300,
+    "publicationYear": 2001,
+    "language": "English",
+    "isbn": "9780066620992",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "good is the enemy of great, and a five-year research question applied to eleven companies"
+      },
+      {
+        "title": "Part Two",
+        "seed": "level 5 leadership, a paradox of personal humility and professional will at the top"
+      },
+      {
+        "title": "Part Three",
+        "seed": "first who then what, the hedgehog concept, and the intersection of passion, competence, and economics"
+      },
+      {
+        "title": "Part Four",
+        "seed": "the flywheel and the doom loop, technology as accelerator, and discipline that sustains greatness"
+      }
+    ],
+    "readingTime": 390
+  },
+  {
+    "id": "b-the-last-translator",
+    "title": "The Kite Runner",
+    "author": "a-hosseini",
+    "genre": "fiction",
+    "description": "Amir and Hassan were kite-flying boys in a peaceful Kabul until one winter afternoon Amir watched something he never confessed — and twenty-six years later a phone call tells him there is a way to be good again.",
+    "tags": [
+      "afghanistan",
+      "friendship",
+      "redemption"
+    ],
+    "rating": 4.3,
+    "pages": 371,
+    "publicationYear": 2003,
+    "language": "English",
+    "isbn": "9781594631931",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "kabul in the 1970s, hazara and pashtun, a servant's son who reads stories under the pomegranate tree"
+      },
+      {
+        "title": "Part Two",
+        "seed": "the kite tournament of 1975, the alley, and the watching that changes two boys forever"
+      },
+      {
+        "title": "Part Three",
+        "seed": "flight from soviet kabul, fremont california, and a father selling blankets at a flea market"
+      },
+      {
+        "title": "Part Four",
+        "seed": "a phone call from peshawar, a return to taliban kabul, and running one last kite for a boy behind glass"
+      }
+    ],
+    "readingTime": 480
+  },
+  {
+    "id": "b-a-guide-to-getting-lost",
+    "title": "Mindset",
+    "author": "a-dweck",
+    "genre": "self",
+    "description": "Why do some people bloom from failure while others are shattered by it? Dweck's decades of research came down to two beliefs about ability — fixed and growth — and the different lives they build.",
+    "tags": [
+      "psychology",
+      "learning",
+      "success"
+    ],
+    "rating": 4.1,
+    "pages": 320,
+    "publicationYear": 2006,
+    "language": "English",
+    "isbn": "9780345472328",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the mindsets, two theories of intelligence, and a puzzle experiment with ten-year-old children"
+      },
+      {
+        "title": "Part Two",
+        "seed": "inside the mindsets, how praise becomes a prison and failure becomes a verdict"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the truth about ability and accomplishment, from sports stars to benjamin bloom's violinists"
+      },
+      {
+        "title": "Part Four",
+        "seed": "changing mindsets, the workshop, and parents, teachers, and coaches who let children grow"
+      }
+    ],
+    "readingTime": 420
+  },
+  {
+    "id": "b-the-weight-of-snow",
+    "title": "Norwegian Wood",
+    "author": "a-murakami",
+    "genre": "fiction",
+    "description": "Toru Watanabe hears a Beatles song on a plane and is thrown back to his student years in Tokyo: two women, one death, and the long business of learning to live with grief.",
+    "tags": [
+      "literary",
+      "romance",
+      "japan"
+    ],
+    "rating": 4,
+    "pages": 296,
+    "publicationYear": 1987,
+    "language": "English",
+    "isbn": "9780375704024",
+    "chapters": [
+      {
+        "title": "Part One",
+        "seed": "the meadow, a well in the garden of memory, and naoko's twentieth birthday that ends in goodbye"
+      },
+      {
+        "title": "Part Two",
+        "seed": "tokyo, a dormitory of politics and mustard warnings, and midori as everything alive"
+      },
+      {
+        "title": "Part Three",
+        "seed": "the sanatorium in the mountains, reconnecting with naoko, and letters that ask for patience"
+      },
+      {
+        "title": "Part Four",
+        "seed": "two loves, one forest, and the telephone ringing in a world without her in it"
+      }
+    ],
+    "readingTime": 380
+  }
+]

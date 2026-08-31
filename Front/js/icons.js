@@ -18,6 +18,7 @@ export const icons = {
   'chevron-right': '<path d="m9 6 6 6-6 6"/>',
   'chevron-down': '<path d="m6 9 6 6 6-6"/>',
   'chevron-up': '<path d="m6 15 6-6 6 6"/>',
+  'arrow-up': '<path d="M12 19V5M5 12l7-7 7 7"/>',
   menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
   x: '<path d="M6 6l12 12M18 6 6 18"/>',
   settings: '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H7a1.6 1.6 0 0 0 1-1.5V1a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V7a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1Z"/>',
@@ -86,6 +87,21 @@ export const icons = {
   'zap': '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/>',
   'coffee': '<path d="M5 9h11v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V9Z"/><path d="M16 10h2a2 2 0 0 1 0 4h-2M5 5c0-1 .8-1.5.5-2.5"/><path d="M8 2.5C8 1 9 1 9 .5"/>',
   'sunrise': '<path d="M12 3v6M5 9H3m18 0h-2M5.6 12.6 4.2 11.2m15.6 1.4-1.4-1.4M3 19h18M7 19a5 5 0 0 1 10 0"/>',
+  // Category (bento) icons
+  'key': '<circle cx="7.5" cy="15.5" r="3.5"/><path d="m10 13 9-9M15 4l3 3M12 7l2.5 2.5"/>',
+  'hammer': '<path d="m15 12-8.5 8.5a1.8 1.8 0 0 1-2.5-2.5L12.5 9.5"/><path d="M14 4.5 19.5 10 22 7.5 16.5 2 14 4.5Zm0 0-2 2 5.5 5.5 2-2"/>',
+  'map': '<path d="m9 4-6 2v14l6-2 6 2 6-2V4l-6 2-6-2Z"/><path d="M9 4v14M15 6v14"/>',
+  'clock-history': '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2M12 3v2"/>',
+  'brain': '<path d="M9.5 3a3 3 0 0 0-3 3c-1.7.3-3 1.8-3 3.6 0 1 .4 1.9 1 2.6-.6.6-1 1.5-1 2.4A3.5 3.5 0 0 0 7 18c.4 1.7 1.9 3 3.8 3H12V3H9.5Z"/><path d="M14.5 3a3 3 0 0 1 3 3c1.7.3 3 1.8 3 3.6 0 1-.4 1.9-1 2.6.6.6 1 1.5 1 2.4A3.5 3.5 0 0 1 17 18c-.4 1.7-1.9 3-3.8 3H12V3h2.5Z"/>',
+  'atom': '<circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/><ellipse cx="12" cy="12" rx="10" ry="4.2"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)"/>',
+  'cpu': '<rect x="6" y="6" width="12" height="12" rx="2"/><rect x="10" y="10" width="4" height="4"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/>',
+  'briefcase': '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 12h18M12 11v3"/>',
+  'image-art': '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.8"/><path d="m4 19 6-6 4 4 3-3 3 3"/>',
+  'growth': '<path d="M12 21v-8"/><path d="M12 13c0-4 2.5-7 7-8-.5 4.5-3 7.5-7 8Z"/><path d="M12 13c0-3.4-2.1-6-6-6.8.4 3.8 2.5 6.3 6 6.8Z"/>',
+  'users': '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 5a3.5 3.5 0 0 1 0 7M17.5 14.5a6.5 6.5 0 0 1 4 5.5"/>',
+  'feather': '<path d="M20.2 3.8a5.5 5.5 0 0 0-7.8 0L4 12.2V20h7.8l8.4-8.4a5.5 5.5 0 0 0 0-7.8Z"/><path d="M16 8 4 20M13 11h5"/>',
+  'compass': '<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5 5-2Z"/>',
+  'sparkle': '<path d="M12 3l2 5.5L19.5 10 14 12l-2 5.5L10 12 4.5 10 10 8.5 12 3Z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"/>',
 };
 
 export function icon(name, { size = 18, cls = '', stroke = 1.75 } = {}) {
@@ -104,5 +120,15 @@ export function stars(rating) {
     else out += icon('star', { size: 14, cls: 'opacity-30' });
   }
   out += `<span class="rating__val">${rating.toFixed(1)}</span></span>`;
+  return out;
+}
+
+// Interactive star picker for review forms. Clicking a star sets the rating.
+export function renderStarsInput(value = 0) {
+  let out = '<div class="star-input" role="radiogroup" aria-label="Choose a rating">';
+  for (let i = 1; i <= 5; i++) {
+    out += `<button type="button" data-val="${i}" class="star-input__btn ${i <= value ? 'is-active' : ''}" aria-label="${i} star${i > 1 ? 's' : ''}" title="${i} star${i > 1 ? 's' : ''}">${icon(i <= value ? 'star-fill' : 'star', { size: 22 })}</button>`;
+  }
+  out += '</div>';
   return out;
 }

@@ -67,7 +67,7 @@ export function renderFooter() {
   return `
   <footer class="footer">
     <div class="container-wide py-14">
-      <div class="grid gap-10" style="grid-template-columns:1.4fr repeat(3,1fr)">
+      <div class="footer__grid grid gap-10">
         <div>
           <div class="font-serif text-2xl mb-3" style="color:#fff">Lumina<span style="color:var(--gold)">.</span></div>
           <p class="text-sm" style="max-width:24rem;line-height:1.7">Discover beautiful books and read without distraction. A calm, editorial home for readers who value the page.</p>
@@ -134,7 +134,7 @@ export function renderBottomNav(activePage) {
 }
 
 export function renderSidebar(activePage, collapsed = false) {
-  const user = store.getUser();
+  const user = store.getUser() || { name: 'Guest Reader', avatarColor: 'var(--burgundy)' };
   const links = NAV_APP.map((n) => `
     <a class="sidebar__link ${n.page === activePage ? 'is-active' : ''}" href="${n.href}" title="${n.label}">
       ${icon(n.icon, { size: 20 })}<span class="sidebar__label">${n.label}</span>
@@ -162,6 +162,7 @@ export function renderSidebar(activePage, collapsed = false) {
 
 export function renderTopbar(activePage, title, subtitle) {
   const notifCount = store.getNotifications().filter((n) => !n.read).length;
+  const userTopbar = store.getUser() || { name: 'Guest Reader', avatarColor: 'var(--burgundy)' };
   return `
   <div class="topbar">
     <div>
@@ -175,7 +176,7 @@ export function renderTopbar(activePage, title, subtitle) {
         ${icon('bell', { size: 20 })}
         ${notifCount ? `<span style="position:absolute;top:-2px;right:-2px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--burgundy);color:#fff;font-size:10px;display:grid;place-items:center">${notifCount}</span>` : ''}
       </button>
-      <a class="btn--icon" href="profile.html" aria-label="Profile" style="background:${store.getUser().avatarColor};color:#fff;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.8rem">${avatarInitials(store.getUser().name)}</a>
+      <a class="btn--icon" href="profile.html" aria-label="Profile" style="background:${userTopbar.avatarColor};color:#fff;width:2.4rem;height:2.4rem;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.8rem">${avatarInitials(userTopbar.name)}</a>
     </div>
   </div>`;
 }

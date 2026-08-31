@@ -11,7 +11,7 @@ import { qs } from '../utils/dom.js';
 export default {
   topbar: { title: 'Welcome back', subtitle: '' },
   render() {
-    const user = store.getUser();
+    const user = store.getUser() || { name: 'Guest Reader', avatarColor: 'var(--burgundy)' };
     const stats = recommendService.stats();
     const goals = store.getGoals();
     const firstName = user.name.split(' ')[0];

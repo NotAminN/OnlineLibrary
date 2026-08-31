@@ -7,23 +7,35 @@ import { genreById } from '../data/genres.js';
 import { store } from '../state/store.js';
 import { dataService } from '../services/dataService.js';
 
-function cover(book, { className = '', progress = null, actions = true } = {}) {
+// Nested <a> inside the wrapping card <a> is invalid HTML and the browser
+// reparents it apart, leaving cards blank. When `linked: false` the cover
+// renders as a <div>; the surrounding card anchor handles navigation.
+function cover(book, { className = '', progress = null, actions = true, linked = true } = {}) {
   const fav = store.isFavorite(book.id);
   const act = actions ? `
     <button class="cover-action js-fav ${fav ? 'is-active' : ''}" data-book="${book.id}" title="Favorite" aria-label="Toggle favorite">${icon(fav ? 'heart-fill' : 'heart', { size: 17 })}</button>
   ` : '';
   const prog = progress != null ? `<div class="cover-progress"><span style="width:${progress}%"></span></div>` : '';
+  const open = linked
+    ? `<a href="book.html?id=${book.id}" class="cover ${className}" aria-label="${book.title} by ${authorName(book.author)}">`
+    : `<div class="cover ${className}">`;
+  const close = linked ? '</a>' : '</div>';
   return `
-    <a href="book.html?id=${book.id}" class="cover ${className}" aria-label="${book.title} by ${authorName(book.author)}">
+    ${open}
       <img src="${coverDataUri(book)}" onerror="this.onerror=null;this.src='${coverFallbackUri(book)}'" alt="Cover of ${book.title}" loading="lazy" decoding="async" width="300" height="450" />
       ${act}${prog}
-    </a>`;
+    ${close}`;
 }
 
-function meta(book, { showRating = true } = {}) {
+function meta(book, { showRating = true, linked = true } = {}) {
   const a = dataService.authorById[book.author];
+  // linked=false avoids a nested <a> when the surrounding card is itself an
+  // anchor — invalid HTML that the browser silently breaks apart.
+  const title = linked
+    ? `<a href="book.html?id=${book.id}">${book.title}</a>`
+    : book.title;
   return `
-    <h3 class="book-card__title"><a href="book.html?id=${book.id}">${book.title}</a></h3>
+    <h3 class="book-card__title">${title}</h3>
     <p class="book-card__author">${a ? a.name : 'Unknown'}</p>
     <div class="book-card__meta">
       <span class="badge badge--ghost">${genreById[book.genre]?.name || 'Book'}</span>
@@ -53,7 +65,7 @@ export function bookCard(book, opts = {}) {
     return `
     <a href="reader.html?id=${book.id}" class="card continue-card p-4 block" style="text-decoration:none">
       <div class="flex gap-4 items-center">
-        <div class="book-card__cover" style="width:84px;flex-shrink:0">${cover(book, { className: 'cover--sm', actions: false })}</div>
+        <div class="book-card__cover" style="width:84px;flex-shrink:0">${cover(book, { className: 'cover--sm', actions: false, linked: false })}</div>
         <div class="flex-1 min-w-0">
           <h3 class="book-card__title">${book.title}</h3>
           <p class="book-card__author">${authorName(book.author)}</p>
@@ -68,24 +80,24 @@ export function bookCard(book, opts = {}) {
   if (variant === 'compact') {
     return `
     <a href="book.html?id=${book.id}" class="book-card block">
-      ${cover(book, { actions: false })}
-      <div class="mt-3">${meta(book, { showRating: false })}</div>
+      ${cover(book, { actions: false, linked: false })}
+      <div class="mt-3">${meta(book, { showRating: false, linked: false })}</div>
     </a>`;
   }
 
   if (variant === 'featured') {
     return `
     <a href="book.html?id=${book.id}" class="book-card block">
-      <div class="book-card__cover" style="max-width:240px">${cover(book, { className: '' })}</div>
-      <div class="mt-3">${meta(book)}</div>
+      <div class="book-card__cover" style="max-width:240px">${cover(book, { className: '', linked: false })}</div>
+      <div class="mt-3">${meta(book, { linked: false })}</div>
     </a>`;
   }
 
   // standard
   return `
     <a href="book.html?id=${book.id}" class="book-card block">
-      ${cover(book, { actions: opts.actions !== false })}
-      <div class="mt-3">${meta(book)}</div>
+      ${cover(book, { actions: opts.actions !== false, linked: false })}
+      <div class="mt-3">${meta(book, { linked: false })}</div>
     </a>`;
 }
 

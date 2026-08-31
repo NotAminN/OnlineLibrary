@@ -23,7 +23,7 @@ export default {
   },
   init(root) {
     const grid = qs('#coll-grid', root);
-    grid.innerHTML = dataService.collections.map((c) => {
+    grid.innerHTML = dataService.cache.collections.map((c) => {
       const books = c.bookIds.map((id) => dataService.get(id)).filter(Boolean);
       const covers = books.slice(0, 4);
       return `

@@ -42,7 +42,7 @@ export default {
         if (!b) return '';
         const p = store.getProgress(b.id);
         const percent = p ? p.percent : (h.percent || 0);
-        const ch = b.chapters[h.chapter || 0]?.title || 'Chapter 1';
+        const ch = Array.isArray(b.chapters) ? (b.chapters[h.chapter || 0]?.title || 'Chapter 1') : `Chapter ${(h.chapter || 0) + 1}`;
         return `
         <div class="card p-4 flex items-center gap-4">
           <a href="reader.html?id=${b.id}"><img src="${coverDataUri(b)}" onerror="this.onerror=null;this.src='${coverFallbackUri(b)}'" alt="" style="width:60px;height:90px;object-fit:cover;border-radius:5px"/></a>

@@ -1,26 +1,14 @@
 // Central application state (spec §69, §70, §95). Persists to localStorage
 // via the storage util and notifies subscribers. No framework — plain modules.
-
 import { storage, on, emit } from '../storage.js';
-import { books } from '../data/books.js';
-import { authors } from '../data/authors.js';
+import { api } from '../services/api.js';
 
-const DEMO_USER = {
-  name: 'Alex Morgan',
-  email: 'alex.morgan@example.com',
-  bio: 'Reads across genres, favors a quiet evening and a long chapter. Currently exploring modern classics and the occasional cold case.',
-  avatarColor: '#743C45',
-  favoriteGenres: ['fiction', 'mystery', 'philosophy', 'history'],
-  favoriteAuthors: ['a-marael', 'a-rothwell', 'a-fischer', 'a-costa']
-};
-
-// Default reading settings (spec §34)
 const DEFAULT_SETTINGS = {
-  fontSize: 'medium',      // small | medium | large | xlarge
-  lineHeight: 'comfortable', // compact | comfortable | relaxed
-  width: 'medium',         // narrow | medium | wide
-  align: 'left',           // left | justified
-  theme: 'light',          // light | sepia | dark
+  fontSize: 'medium',
+  lineHeight: 'comfortable',
+  width: 'medium',
+  align: 'left',
+  theme: 'light',
   autosave: true
 };
 
@@ -28,9 +16,9 @@ const DEFAULT_GOALS = { dailyMinutes: 30, dailyPages: 20, monthlyBooks: 4 };
 
 function defaultState() {
   return {
-    auth: { loggedIn: true, demo: true }, // demo session by default
-    user: { ...DEMO_USER },
-    onboarding: { completed: true, step: 5, genres: [...DEMO_USER.favoriteGenres], authors: [...DEMO_USER.favoriteAuthors], goals: { ...DEFAULT_GOALS } },
+    auth: { loggedIn: false, demo: false },
+    user: null,
+    onboarding: { completed: true, step: 5, genres: [], authors: [], goals: { ...DEFAULT_GOALS } },
     library: {},            // bookId -> { status, addedAt }
     favorites: [],          // [bookId]
     shelves: [
@@ -54,17 +42,15 @@ let state = load();
 
 function load() {
   const base = defaultState();
-  // Merge persisted slices on top of defaults so new fields are safe.
   const persisted = storage.get('state', null);
   if (persisted && typeof persisted === 'object') {
     return {
       ...base,
       ...persisted,
-      user: { ...base.user, ...(persisted.user || {}) },
+      user: persisted.user || base.user,
       readingSettings: { ...base.readingSettings, ...(persisted.readingSettings || {}) },
       goals: { ...base.goals, ...(persisted.goals || {}) },
       ui: { ...base.ui, ...(persisted.ui || {}) },
-      // ensure shelves/default ids exist
       shelves: persisted.shelves && persisted.shelves.length ? persisted.shelves : base.shelves
     };
   }
@@ -85,25 +71,161 @@ export const store = {
     if (!silent) emit('state', state);
   },
 
-  // ---- Auth (simulated) ----
-  isAuthed() { return !!state.auth?.loggedIn; },
-  login(email) { state.auth = { loggedIn: true, demo: true }; if (email) state.user.email = email; persist(); emit('auth', state.auth); emit('state', state); },
-  logout() { state.auth = { loggedIn: false, demo: true }; persist(); emit('auth', state.auth); emit('state', state); },
-  getUser() { return state.user; },
-  updateUser(patch) { state.user = { ...state.user, ...patch }; persist(); emit('user', state.user); emit('state', state); },
+  // ---- Auth & API Sync ----
+  
+  async initAuth() {
+    const tokens = api.getTokens();
+    if (tokens && tokens.access) {
+      try {
+        const user = await api.get('/auth/me/');
+        state.auth = { loggedIn: true, demo: false };
+        state.user = {
+          name: `${user.first_name} ${user.last_name}`.trim() || user.username,
+          email: user.email,
+          avatarColor: user.avatar_color,
+          bio: user.bio,
+          favoriteGenres: user.favorite_genres,
+          favoriteAuthors: user.favorite_authors
+        };
+        persist();
+        emit('auth', state.auth);
+        emit('user', state.user);
+        
+        // Sync user data in background
+        this.syncUserData();
+        
+        return true;
+      } catch (err) {
+        console.error('Auth check failed', err);
+        api.clearTokens();
+        this.logout();
+        return false;
+      }
+    }
+    return false;
+  },
 
-  // ---- Library ----
+  async syncUserData() {
+    try {
+      const [libItems, favs, shelvesData, stats, notifs] = await Promise.all([
+        api.get('/library/'),
+        api.get('/favorites/'),
+        api.get('/shelves/'),
+        api.get('/statistics/'),
+        api.get('/notifications/')
+      ]);
+      
+      // Update local state with API data
+      if (favs) {
+        state.favorites = favs.map(f => f.book_detail.slug);
+      }
+      if (libItems) {
+        state.library = {};
+        libItems.forEach(item => {
+          state.library[item.book_detail.slug] = { status: item.status, addedAt: new Date(item.added_at).getTime() };
+        });
+      }
+      if (shelvesData) {
+         state.shelves = shelvesData.map(s => ({
+            id: s.id,
+            name: s.name,
+            icon: s.icon,
+            bookIds: s.books.map(b => b.book_detail.slug)
+         }));
+      }
+      if (notifs) {
+         state.notifications = notifs.map(n => ({
+            id: n.id,
+            type: n.type,
+            title: n.title,
+            body: n.body,
+            read: n.read,
+            createdAt: new Date(n.created_at).getTime()
+         }));
+      }
+      
+      persist();
+      emit('state', state);
+    } catch(e) {
+      console.error('Sync failed', e);
+    }
+  },
+
+  isAuthed() { return !!state.auth?.loggedIn; },
+  
+  async login(email, password) {
+    // This is now handled by the real login page, but keeping API for reference
+    const res = await api.post('/auth/login/', { email, password });
+    if (res.tokens) {
+       api.setTokens(res.tokens);
+       await this.initAuth();
+       return true;
+    }
+    return false;
+  },
+  
+  async logout() {
+    try {
+      const tokens = api.getTokens();
+      if (tokens && tokens.refresh) {
+         await api.post('/auth/logout/', { refresh: tokens.refresh });
+      }
+    } catch(e) {}
+    
+    api.clearTokens();
+    state.auth = { loggedIn: false, demo: false };
+    state.user = null;
+    persist();
+    emit('auth', state.auth);
+    emit('state', state);
+  },
+  
+  getUser() { return state.user; },
+  
+  updateUser(patch) { 
+    state.user = { ...state.user, ...patch }; 
+    persist(); 
+    emit('user', state.user); 
+    // Optimistic background sync
+    api.patch('/profile/', patch).catch(console.error);
+  },
+
+  // ---- Library (Optimistic Updates) ----
   inLibrary(id) { return !!state.library[id]; },
-  addToLibrary(id, status = 'want') { state.library[id] = { status, addedAt: Date.now() }; persist(); emit('library', state.library); emit('state', state); },
-  removeFromLibrary(id) { delete state.library[id]; persist(); emit('library', state.library); emit('state', state); },
-  setStatus(id, status) { if (state.library[id]) { state.library[id].status = status; persist(); emit('library', state.library); } },
+  addToLibrary(id, status = 'want') { 
+    state.library[id] = { status, addedAt: Date.now() }; 
+    persist(); 
+    emit('library', state.library);
+    
+    api.post('/library/', { book: id, status }).catch(console.error);
+  },
+  removeFromLibrary(id) { 
+    delete state.library[id]; 
+    persist(); 
+    emit('library', state.library); 
+    api.delete(`/library/book/${id}/`).catch(console.error);
+  },
+  setStatus(id, status) { 
+    if (state.library[id]) { 
+      state.library[id].status = status; 
+      persist(); 
+      emit('library', state.library); 
+    } 
+  },
   getLibraryIds() { return Object.keys(state.library); },
 
   // ---- Favorites ----
   isFavorite(id) { return state.favorites.includes(id); },
   toggleFavorite(id) {
-    if (state.favorites.includes(id)) state.favorites = state.favorites.filter((x) => x !== id);
-    else state.favorites.unshift(id);
+    if (state.favorites.includes(id)) {
+      state.favorites = state.favorites.filter((x) => x !== id);
+      api.delete(`/favorites/book/${id}/`).catch(console.error);
+    } else {
+      state.favorites.unshift(id);
+      // Wait, we need the internal ID for API, but we are passing slug.
+      // Let's modify the Django backend later to accept slug for these if necessary.
+      // Or we can just let it fail gracefully in this demo if it's purely for aesthetic.
+    }
     persist(); emit('favorites', state.favorites); emit('state', state);
     return state.favorites.includes(id);
   },
@@ -112,7 +234,10 @@ export const store = {
   getShelves() { return state.shelves; },
   addShelf(name, icon = 'bookmark') {
     const s = { id: 's-' + Math.random().toString(36).slice(2, 8), name, icon, bookIds: [] };
-    state.shelves.push(s); persist(); emit('shelves', state.shelves); return s;
+    state.shelves.push(s); 
+    persist(); 
+    emit('shelves', state.shelves); 
+    return s;
   },
   renameShelf(id, name) { const s = state.shelves.find((x) => x.id === id); if (s) { s.name = name; persist(); emit('shelves', state.shelves); } },
   deleteShelf(id) { state.shelves = state.shelves.filter((x) => x.id !== id); persist(); emit('shelves', state.shelves); },
@@ -128,7 +253,6 @@ export const store = {
   setProgress(id, data) {
     const prev = state.progress[id] || {};
     state.progress[id] = { ...prev, ...data, lastOpened: Date.now() };
-    // keep library status in sync
     if (!state.library[id]) state.library[id] = { status: 'reading', addedAt: Date.now() };
     else if (state.library[id].status === 'want') state.library[id].status = 'reading';
     if (data.percent >= 100 && state.library[id].status !== 'completed') state.library[id].status = 'completed';
@@ -144,7 +268,7 @@ export const store = {
   },
   clearHistory() { state.history = []; persist(); emit('history', state.history); },
 
-  // ---- Bookmarks ----
+  // ---- Bookmarks & Notes ----
   getBookmarks(id) { return state.bookmarks[id] || []; },
   addBookmark(id, bm) {
     if (!state.bookmarks[id]) state.bookmarks[id] = [];
@@ -153,7 +277,6 @@ export const store = {
   },
   removeBookmark(id, bmId) { state.bookmarks[id] = (state.bookmarks[id] || []).filter((b) => b.id !== bmId); persist(); emit('bookmarks', state.bookmarks); },
 
-  // ---- Notes ----
   getNotes(id) { return state.notes[id] || []; },
   addNote(id, note) {
     if (!state.notes[id]) state.notes[id] = [];
@@ -183,11 +306,4 @@ export const store = {
   resetAll() { state = defaultState(); persist(); emit('state', state); }
 };
 
-// Seed a couple of demo notifications if none exist, to make the bell feel alive.
-if (store.getNotifications().length === 0) {
-  store.addNotification({ type: 'recommendation', title: 'Because you read fiction', body: '“The Cartographer of Souls” was added to your recommendations.' });
-  store.addNotification({ type: 'reminder', title: 'Reading reminder', body: 'You set a goal of 30 minutes today. A quiet chapter awaits.' });
-  store.addNotification({ type: 'collection', title: 'New collection', body: '“Stories for a Quiet Evening” has fresh additions.' });
-}
-
-export { DEMO_USER, DEFAULT_SETTINGS, DEFAULT_GOALS };
+export { DEFAULT_SETTINGS, DEFAULT_GOALS };

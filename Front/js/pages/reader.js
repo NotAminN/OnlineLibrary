@@ -17,11 +17,25 @@ const WIDTH = { narrow: '58ch', medium: '72ch', wide: '86ch' };
 
 export default {
   render(root, params) {
-    const book = dataService.get(params.id);
-    if (!book) {
+    root.innerHTML = `<div class="center" style="height:100vh;flex-direction:column;gap:1rem"><div class="muted">Loading reader...</div></div>`;
+  },
+
+  async init(root, params) {
+    let book;
+    try {
+      book = await dataService.getFullBook(params.id);
+      book.id = book.slug;
+      book.pages = book.pages || 300;
+    } catch (e) {
       root.innerHTML = `<div class="center" style="height:100vh;flex-direction:column;gap:1rem"><h2>Book not found</h2><a class="btn btn--primary" href="explore.html">Browse library</a></div>`;
       return;
     }
+    
+    if (!book || !book.chapters || !book.chapters.length) {
+      root.innerHTML = `<div class="center" style="height:100vh;flex-direction:column;gap:1rem"><h2>Book content not available</h2><a class="btn btn--primary" href="explore.html">Browse library</a></div>`;
+      return;
+    }
+
     const s = store.getSettings();
     root.className = 'reader' + (s.theme === 'dark' ? ' is-dark' : s.theme === 'sepia' ? ' is-sepia' : '');
     root.style.setProperty('--reader-font-size', FONT_SIZE[s.fontSize]);
@@ -51,11 +65,7 @@ export default {
         <span class="reader__pct" id="reader-pct">0%</span>
         <button class="reader__nav-btn" data-next>Next ${icon('chevron-right', { size: 16 })}</button>
       </div>`;
-  },
 
-  init(root, params) {
-    const book = dataService.get(params.id);
-    if (!book) return;
     const content = qs('#reader-content', root);
     const fill = qs('#reader-fill', root);
     const pctEl = qs('#reader-pct', root);
@@ -195,14 +205,16 @@ export default {
     }
 
     function applySetting(key, val) {
-      const r = qs('.reader', root);
+      // root IS the .reader element (see init above) — classList goes on it directly.
       if (key === 'fontSize') root.style.setProperty('--reader-font-size', FONT_SIZE[val]);
       if (key === 'lineHeight') root.style.setProperty('--reader-line-height', LINE_HEIGHT[val]);
       if (key === 'width') root.style.setProperty('--reader-width', WIDTH[val]);
       if (key === 'align') root.style.setProperty('--reader-align', val);
       if (key === 'theme') {
-        r.classList.toggle('is-dark', val === 'dark');
-        r.classList.toggle('is-sepia', val === 'sepia');
+        root.classList.toggle('is-dark', val === 'dark');
+        root.classList.toggle('is-sepia', val === 'sepia');
+        // Keep the page behind the reader in sync so overscroll matches the theme.
+        document.body.style.background = val === 'dark' ? 'var(--darkreader-bg)' : val === 'sepia' ? 'var(--sepia-bg)' : '#fff';
       }
       // recalc progress after layout shift
       updateProgress();

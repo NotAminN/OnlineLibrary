@@ -53,7 +53,7 @@ export default {
         <h2 class="font-serif text-center mb-2">Choose favorite authors.</h2>
         <p class="muted text-center mb-6">Optional — but it sharpens “because you read” suggestions.</p>
         <div class="grid gap-2" id="onb-authors" style="grid-template-columns:repeat(auto-fill,minmax(160px,1fr))">
-          ${dataService.authors.map((a) => `<button class="chip chip--sm ${sel.authors.includes(a.id) ? 'is-active' : ''}" data-a="${a.id}">${a.name}</button>`).join('')}
+          ${dataService.cache.authors.map((a) => `<button class="chip chip--sm ${sel.authors.includes(a.id) ? 'is-active' : ''}" data-a="${a.id}">${a.name}</button>`).join('')}
         </div>
         <div class="flex justify-between mt-7">
           <button class="btn btn--ghost" data-back>Back</button>

@@ -103,26 +103,33 @@ export default {
     const countEl = qs('#result-count', root);
     const emptySlot = qs('#empty-slot', root);
 
-    function run() {
-      const lib = store.get().library;
-      let res = dataService.search(state.q, {
-        genres: state.genres, minRating: state.minRating || null,
-        yearFrom: state.yearFrom, yearTo: state.yearTo,
-        status: state.status, lib, sort: state.sort
-      });
-      countEl.textContent = `${res.length} ${res.length === 1 ? 'book' : 'books'}`;
-      if (!res.length) {
-        resultsEl.innerHTML = '';
-        emptySlot.innerHTML = `<div class="empty empty--lg">
-          <div class="empty__icon">${icon('search', { size: 28 })}</div>
-          <div class="empty__title">No books found</div>
-          <p class="empty__text">We couldn't find a book matching your filters. Try removing one.</p>
-        </div>`;
-        return;
-      }
+    async function run() {
+      resultsEl.innerHTML = '<div class="muted py-8 text-center">Loading books...</div>';
       emptySlot.innerHTML = '';
-      resultsEl.innerHTML = res.map((b) => bookCard(b)).join('');
-      staggerReveal('.book-card', root, { stagger: 0.04 });
+      
+      try {
+        const lib = store.get().library;
+        let res = await dataService.search(state.q, {
+          genres: state.genres, minRating: state.minRating || null,
+          yearFrom: state.yearFrom, yearTo: state.yearTo,
+          status: state.status, lib, sort: state.sort
+        });
+        countEl.textContent = `${res.length} ${res.length === 1 ? 'book' : 'books'}`;
+        if (!res.length) {
+          resultsEl.innerHTML = '';
+          emptySlot.innerHTML = `<div class="empty empty--lg">
+            <div class="empty__icon">${icon('search', { size: 28 })}</div>
+            <div class="empty__title">No books found</div>
+            <p class="empty__text">We couldn't find a book matching your filters. Try removing one.</p>
+          </div>`;
+          return;
+        }
+        emptySlot.innerHTML = '';
+        resultsEl.innerHTML = res.map((b) => bookCard(b)).join('');
+        staggerReveal('.book-card', root, { stagger: 0.04 });
+      } catch (err) {
+        resultsEl.innerHTML = `<div class="muted py-8 text-center text-error">Failed to load results.</div>`;
+      }
     }
 
     // Genre chips

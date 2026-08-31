@@ -25,7 +25,7 @@ function seg(label, key, map) {
 export default {
   topbar: { title: 'Settings', subtitle: 'Tune the experience to your reading.' },
   render() {
-    const user = store.getUser();
+    const user = store.getUser() || { name: '', email: '', bio: '' };
     const goals = store.getGoals();
     const s = store.getSettings();
     return `

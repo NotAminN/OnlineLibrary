@@ -1,63 +1,54 @@
-// Authors page (spec §28, §27). List + profile section.
+// Authors page (spec §28, §27) — editorial redesign. List + profile section.
 import { dataService } from '../services/dataService.js';
 import { genreById } from '../data/genres.js';
 import { bookCard } from '../components/bookCard.js';
 import { avatarInitials } from '../utils/format.js';
-import { icon } from '../icons.js';
-import { sectionReveal, staggerReveal } from '../animations/gsap.js';
+import { authorCard, loadPortraitsThenBind } from '../components/authorCard.js';
+import { authorPortraitUrl } from '../data/authorPortraits.js';
+import { staggerReveal } from '../animations/gsap.js';
 import { qs, qsa } from '../utils/dom.js';
 
 export default {
   render() {
     return `
-    <section class="page-hero">
-      <div class="container-wide" style="padding-block:2.5rem">
-        <div class="eyebrow mb-2">AUTHORS</div>
-        <h1 class="page-title">Authors worth discovering</h1>
-        <p class="lede mt-2" style="max-width:52ch">The minds behind the books. Browse their catalog, biographies, and latest releases.</p>
+    <section class="authors-hero">
+      <div class="authors-container">
+        <div class="authors-hero__row">
+          <div>
+            <p class="authors-eyebrow">Explore the creators</p>
+            <h1 class="page-title authors-title">Voices behind the books</h1>
+          </div>
+          <a class="authors-all-btn" href="authors.html">All authors <span aria-hidden="true">&rarr;</span></a>
+        </div>
       </div>
     </section>
-    <section class="container-wide" style="padding-block:3rem">
-      <div class="grid gap-5" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr))" id="author-grid" data-reveal></div>
+    <section class="authors-container" style="padding-block:0.5rem 8.5rem">
+      <div class="authors-grid" id="author-grid"></div>
     </section>
-    <section id="author-profile" class="container-wide" style="padding-block:2rem;display:none"></section>`;
+    <section id="author-profile" class="authors-container" style="padding-block:2rem;display:none"></section>`;
   },
   init(root) {
+    const authors = dataService.cache.authors;
     const grid = qs('#author-grid', root);
-    grid.innerHTML = dataService.authors.map((a) => {
-      const books = dataService.byAuthor(a.id);
-      const color = genreById[a.genres[0]]?.color || 'var(--burgundy)';
-      return `
-      <a class="card author-card p-6 block" href="#${a.id}" data-author="${a.id}">
-        <div class="flex items-center gap-4">
-          <div class="avatar avatar--lg" style="background:${color}">${avatarInitials(a.name)}</div>
-          <div>
-            <div class="font-serif text-xl">${a.name}</div>
-            <div class="text-sm muted">${a.genres.map((g) => genreById[g]?.name).join(', ')}</div>
-          </div>
-        </div>
-        <p class="author-bio text-sm mt-4" style="display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden">${a.bio}</p>
-        <div class="flex items-center justify-between mt-4">
-          <span class="badge badge--ghost">${books.length} books</span>
-          <span class="text-sm" style="color:var(--burgundy)">View profile →</span>
-        </div>
-      </a>`;
-    }).join('');
-    staggerReveal('.author-card', root, { stagger: 0.05 });
+    grid.innerHTML = authors.map((a) => authorCard(a, dataService.byAuthor(a.id))).join('');
+    loadPortraitsThenBind(grid, authors);
+    staggerReveal('.ace', root, { stagger: 0.05 });
 
     // Profile rendering when hash present / clicked
     function showProfile(id) {
       const a = dataService.authorById[id];
       if (!a) return;
       const books = dataService.byAuthor(id);
-      const color = genreById[a.genres[0]]?.color || 'var(--burgundy)';
       const popular = books.slice(0, 4);
       const latest = books.slice(-3).reverse();
+      const portraitUrl = authorPortraitUrl(a.name);
       const profile = qs('#author-profile', root);
       profile.style.display = 'block';
       profile.innerHTML = `
         <div class="author-hero card p-8 mb-8" style="background:linear-gradient(135deg, var(--ink), #3a2e2a);color:#fff">
-          <div class="avatar avatar--lg" style="background:${color};width:6rem;height:6rem;font-size:2rem">${avatarInitials(a.name)}</div>
+          ${portraitUrl
+            ? `<img class="author-hero__portrait" src="${portraitUrl}" alt="Portrait of ${a.name}" onerror="this.remove()">`
+            : `<div class="avatar avatar--lg" style="background:var(--burgundy);width:6rem;height:6rem;font-size:2rem">${avatarInitials(a.name)}</div>`}
           <div>
             <div class="eyebrow" style="color:var(--gold)">AUTHOR</div>
             <h2 class="font-serif" style="color:#fff;font-size:2.4rem">${a.name}</h2>
@@ -82,3 +73,4 @@ export default {
     if (hash && dataService.authorById[hash]) setTimeout(() => showProfile(hash), 350);
   }
 };
+

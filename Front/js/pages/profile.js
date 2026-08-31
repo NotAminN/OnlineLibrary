@@ -11,7 +11,7 @@ import { qs } from '../utils/dom.js';
 export default {
   topbar: { title: 'Profile', subtitle: 'Your reader identity.' },
   render() {
-    const user = store.getUser();
+    const user = store.getUser() || { name: 'Guest Reader', email: '', bio: 'Set up your profile to personalize Lumina.', avatarColor: 'var(--burgundy)', favoriteGenres: [] };
     const stats = recommendService.stats();
     const favGenres = user.favoriteGenres.map((g) => dataService.genreById[g]).filter(Boolean);
     const activity = store.get().history.slice(0, 6);

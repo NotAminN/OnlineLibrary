@@ -157,3 +157,50 @@ export function coverFallbackUri(book) {
 export function coverDataUri(book) {
   return coverUrl(book) || coverFallbackUri(book);
 }
+
+// Global safety net: the Open Library covers API can hang (request never
+// completes, so `onerror` never fires) leaving blank white cover slots.
+// Two defenses:
+//  1. Immediately paint the procedural SVG cover as the img's background, so
+//     a slow or hung cover shows artwork instead of a white hole.
+//  2. If a real cover hasn't finished within `timeout` of starting, swap the
+//     src to the procedural SVG for that book.
+export function installCoverWatchdog({ timeout = 4000, findBookByIsbn } = {}) {
+  if (window.__luminaCoverWatchdog) return;
+  window.__luminaCoverWatchdog = true;
+  const startedAt = new WeakMap();
+  const bookFor = (img) => {
+    const m = String(img.getAttribute('src') || '').match(/isbn\/([^/?#]+?)-/);
+    return m && findBookByIsbn ? findBookByIsbn(decodeURIComponent(m[1])) : null;
+  };
+  const swapToFallback = (img) => {
+    const book = bookFor(img);
+    if (book) img.src = coverFallbackUri(book);
+  };
+  const scan = () => {
+    document.querySelectorAll('img[src*="covers.openlibrary.org"]').forEach((img) => {
+      // Defense 1: genre-colored artwork behind the img while it loads.
+      if (!img.dataset.svgBg) {
+        const book = bookFor(img);
+        if (book) {
+          img.dataset.svgBg = '1';
+          img.style.background = `#e9e4da center / cover no-repeat url("${coverFallbackUri(book)}")`;
+        } else {
+          img.dataset.svgBg = '1';
+        }
+      }
+      if (img.complete) {
+        // Errored (0×0) despite the onerror swap — replace as a last resort.
+        if (!img.naturalWidth && img.currentSrc) swapToFallback(img);
+        return;
+      }
+      // Lazy image not scrolled into view yet — loading hasn't begun.
+      if (!img.currentSrc) return;
+      const t0 = startedAt.get(img);
+      if (!t0) { startedAt.set(img, Date.now()); return; }
+      if (Date.now() - t0 > timeout) swapToFallback(img);
+    });
+  };
+  scan();
+  setInterval(scan, 1000);
+}

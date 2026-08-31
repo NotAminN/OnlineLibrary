@@ -1,45 +1,114 @@
-// Data service — query helpers over the mock data (spec §68, §5).
-// Keeps UI decoupled from data shape; a real API could replace these.
+import { api } from './api.js';
 
-import { books, bookById } from '../data/books.js';
-import { authors, authorById } from '../data/authors.js';
-import { genres, genreById } from '../data/genres.js';
-import { collections, collectionById } from '../data/collections.js';
+// We'll maintain a local cache to keep the app snappy
+// and to avoid rewriting synchronous getters entirely where possible,
+// but all main fetch methods will now be async.
 
 export const dataService = {
-  books,
-  authors,
-  genres,
-  collections,
-  bookById,
-  authorById,
-  genreById,
-  collectionById,
-
-  get(id) { return bookById[id] || null; },
-  all() { return books; },
-
-  byAuthor(authorId) { return books.filter((b) => b.author === authorId); },
-  byGenre(genreId) { return books.filter((b) => b.genre === genreId); },
-  byCollection(collectionId) {
-    const c = collectionById[collectionId];
-    if (!c) return [];
-    return c.bookIds.map((id) => bookById[id]).filter(Boolean);
+  // We can cache data here
+  cache: {
+    books: [],
+    authors: [],
+    genres: [],
+    collections: [],
+    booksLoaded: false,
   },
 
-  // Full-text-ish search across title, author name, genre, tags, description.
-  search(query, opts = {}) {
-    const q = query.trim().toLowerCase();
-    let results = books;
-    if (q) {
-      results = books.filter((b) => {
-        const a = authorById[b.author];
-        const g = genreById[b.genre];
-        const hay = [b.title, a?.name, g?.name, b.description, b.tags.join(' ')].join(' ').toLowerCase();
-        return hay.includes(q);
+  authorById: {},
+  genreById: {},
+  collectionById: {},
+
+  async initialize() {
+    if (this.cache.booksLoaded) return;
+    try {
+      const [books, authors, categories, collections] = await Promise.all([
+        api.get('/books/'),
+        api.get('/authors/'),
+        api.get('/categories/'),
+        api.get('/collections/')
+      ]);
+
+      // Normalize: some DRF endpoints may return paginated {count, results:[...]}
+      const asList = (data) => (Array.isArray(data) ? data : (data && Array.isArray(data.results) ? data.results : []));
+      const mapBook = (b) => ({
+        ...b,
+        id: b.slug,
+        author: b.author_slug,
+        genre: b.genre_slug,
+        isPopular: b.is_popular,
+        isNew: b.is_new,
+        editorPick: b.editor_pick,
+        publicationYear: b.publication_year
       });
+
+      const mapAuthor = (a) => ({ ...a, id: a.slug });
+      const mapCat = (c) => ({ ...c, id: c.slug });
+      const mapCol = (c) => ({
+        ...c,
+        id: c.slug,
+        desc: c.description,
+        bookIds: c.preview_books ? c.preview_books.map(b => b.slug) : []
+      });
+
+      this.cache.books = asList(books).map(mapBook);
+      this.cache.authors = asList(authors).map(mapAuthor);
+      this.cache.genres = asList(categories).map(mapCat);
+      this.cache.collections = asList(collections).map(mapCol);
+      
+      this.cache.authors.forEach(a => this.authorById[a.id] = a);
+      this.cache.genres.forEach(c => this.genreById[c.id] = c);
+      this.cache.collections.forEach(c => this.collectionById[c.id] = c);
+      
+      this.cache.booksLoaded = true;
+    } catch (e) {
+      console.error('Failed to load initial data from API', e);
     }
-    return this.applyFilters(results, opts);
+  },
+
+  get(slug) { 
+    return this.cache.books.find(b => b.id === slug) || null; 
+  },
+  
+  async getFullBook(slug) {
+    return await api.get(`/books/${slug}/`);
+  },
+
+  all() { return this.cache.books; },
+
+  byAuthor(authorSlug) { 
+    return this.cache.books.filter((b) => b.author === authorSlug); 
+  },
+  
+  byGenre(genreSlug) { 
+    return this.cache.books.filter((b) => b.genre === genreSlug); 
+  },
+  
+  async byCollection(collectionSlug) {
+    const c = await api.get(`/collections/${collectionSlug}/`);
+    return c.books || [];
+  },
+
+  async search(query, opts = {}) {
+    // We can use the API search endpoint
+    if (!query) {
+       // Just apply local filters if no query
+       return this.applyFilters(this.cache.books, opts);
+    }
+    const params = { q: query };
+    if (opts.minRating) params.rating__gte = opts.minRating;
+    // ... we can map other filters, or for now just use the local applyFilters on API results
+    const results = await api.get('/search/', { q: query });
+    const mapped = (results.books || []).map(b => ({
+      ...b,
+      id: b.slug,
+      author: b.author_slug,
+      genre: b.genre_slug,
+      isPopular: b.is_popular,
+      isNew: b.is_new,
+      editorPick: b.editor_pick,
+      publicationYear: b.publication_year
+    }));
+    return this.applyFilters(mapped, opts);
   },
 
   applyFilters(list, opts = {}) {
@@ -50,6 +119,7 @@ export const dataService = {
     if (opts.yearFrom) r = r.filter((b) => b.publicationYear >= opts.yearFrom);
     if (opts.yearTo) r = r.filter((b) => b.publicationYear <= opts.yearTo);
     if (opts.language) r = r.filter((b) => b.language === opts.language);
+    // lib status requires fetching from library API, for now filter locally if provided
     if (opts.status && opts.lib) r = r.filter((b) => opts.lib[b.id]?.status === opts.status);
     return this.sort(r, opts.sort);
   },
@@ -66,25 +136,17 @@ export const dataService = {
     }
   },
 
-  // Suggestions for search overlay (titles + authors + genres).
-  suggestions(query) {
-    const q = query.trim().toLowerCase();
+  async suggestions(query) {
+    const q = query.trim();
     if (!q) return [];
+    const res = await api.get('/search/', { q });
     const out = [];
-    books.slice(0, 40).forEach((b) => {
-      if (b.title.toLowerCase().includes(q)) out.push({ type: 'book', id: b.id, label: b.title });
-    });
-    authors.forEach((a) => {
-      if (a.name.toLowerCase().includes(q)) out.push({ type: 'author', id: a.id, label: a.name });
-    });
-    genres.forEach((g) => {
-      if (g.name.toLowerCase().includes(q)) out.push({ type: 'genre', id: g.id, label: g.name });
-    });
-    return out.slice(0, 8);
+    (res.books || []).slice(0, 4).forEach(b => out.push({ type: 'book', id: b.slug, label: b.title }));
+    (res.authors || []).slice(0, 2).forEach(a => out.push({ type: 'author', id: a.slug, label: a.name }));
+    (res.categories || []).slice(0, 2).forEach(g => out.push({ type: 'genre', id: g.slug, label: g.name }));
+    return out;
   },
 
   popularSearches() { return ['Fiction', 'Mystery', 'Mara El-Amin', 'Philosophy', 'History', 'Modern Classics']; },
   recentSearches() { return ['The Tenth Quiet', 'essential mysteries', 'sleep science']; }
 };
-
-export { books, authors, genres, collections };

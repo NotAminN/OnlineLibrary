@@ -99,7 +99,7 @@ export default {
     }
 
     function addBooksToShelf(id) {
-      const candidates = dataService.books.filter((b) => !store.getShelves().find((s) => s.id === id).bookIds.includes(b.id)).slice(0, 30);
+      const candidates = dataService.cache.books.filter((b) => !store.getShelves().find((s) => s.id === id).bookIds.includes(b.id)).slice(0, 30);
       const drawer = document.createElement('div');
       drawer.className = 'drawer';
       drawer.innerHTML = `

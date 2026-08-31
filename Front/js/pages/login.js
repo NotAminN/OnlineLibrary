@@ -16,6 +16,8 @@ const ILLUSTRATION = `
 
 export default {
   render() {
+    // Where to send the user after a successful sign-in (set by the auth guard).
+    this.nextPage = new URLSearchParams(location.search).get('next') || 'dashboard.html';
     return `
     <div class="grid auth-layout" style="min-height:100vh;grid-template-columns:1fr 1fr" id="auth-grid">
       <div class="auth-form-side" style="display:grid;place-items:center;padding:1.5rem">
@@ -39,11 +41,35 @@ export default {
           <div class="field"><label class="field__label">Email</label><input class="input" type="email" required placeholder="you@example.com" value="alex.morgan@example.com"/></div>
           <div class="field"><label class="field__label">Password</label><input class="input" type="password" required placeholder="••••••••" value="demo-pass"/></div>
           <a class="text-sm" href="#" data-forgot style="color:var(--burgundy);align-self:flex-end">Forgot password?</a>
-          <button class="btn btn--primary btn--lg" type="submit">Sign in</button>
+          <button class="btn btn--primary btn--lg" type="submit" id="login-btn">Sign in</button>
         </form>
         <p class="text-sm muted mt-6 text-center">New to Lumina? <a href="register.html" style="color:var(--burgundy);font-weight:600">Create an account</a></p>`;
-      qs('#login-form', root).onsubmit = (e) => { e.preventDefault(); const email = e.target.querySelector('input[type=email]').value; store.login(email); toast('Signed in (demo).', 'success'); setTimeout(() => location.href = 'dashboard.html', 500); };
-      qs('[data-forgot]', root).onclick = (e) => { e.preventDefault(); toast('Password reset is simulated in this demo.', 'info'); };
+      qs('#login-form', root).onsubmit = async (e) => { 
+        e.preventDefault(); 
+        const email = e.target.querySelector('input[type=email]').value; 
+        const password = e.target.querySelector('input[type=password]').value;
+        const btn = qs('#login-btn', root);
+        const origText = btn.textContent;
+        btn.textContent = 'Signing in...';
+        btn.disabled = true;
+        try {
+          const success = await store.login(email, password);
+          if (success) {
+             toast('Signed in successfully.', 'success');
+             const next = this.nextPage || 'dashboard.html';
+             setTimeout(() => location.href = next, 500);
+          } else {
+             toast('Invalid credentials.', 'error');
+             btn.textContent = origText;
+             btn.disabled = false;
+          }
+        } catch(err) {
+          toast(err.message || 'Login failed.', 'error');
+          btn.textContent = origText;
+          btn.disabled = false;
+        }
+      };
+      qs('[data-forgot]', root).onclick = (e) => { e.preventDefault(); toast('Password reset is not yet implemented.', 'info'); };
     }
   }
 };

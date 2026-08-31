@@ -12,6 +12,7 @@ import { renderNavbar, renderFooter, renderBottomNav, renderSidebar, renderTopba
 import { openSearch, openCommandPalette, openNotifications, openMobileMenu } from './components/modals.js';
 import { toast } from './utils/toast.js';
 import { icon } from './icons.js';
+import { installCoverWatchdog } from './utils/covers.js';
 
 // ---- Page registry ----
 import home from './pages/home.js';
@@ -41,6 +42,17 @@ const PAGES = {
   library, dashboard, favorites, history, shelves, statistics,
   profile, settings, onboarding, login, register, about, faq, contact
 };
+
+// Pages that require a signed-in user. Unauthenticated visitors are
+// redirected to the login page and returned here afterwards.
+const AUTH_PAGES = new Set(['library', 'dashboard', 'favorites', 'history', 'shelves', 'statistics', 'profile', 'settings']);
+
+function requireAuth(page) {
+  if (!AUTH_PAGES.has(page) || store.isAuthed()) return true;
+  const next = encodeURIComponent(location.pathname.split('/').pop() + location.search);
+  location.replace(`login.html?next=${next}`);
+  return false;
+}
 
 function getParams() {
   const p = new URLSearchParams(location.search);
@@ -83,6 +95,9 @@ function mount() {
 
     const params = getParams();
 
+    // Gate personal pages behind login — redirect before anything renders.
+    if (!requireAuth(page)) { removeBoot(0); return; }
+
     if (layout === 'reader') {
       // Reader manages its own full screen; still allow global search/command.
       renderGlobalChrome(true);
@@ -122,6 +137,20 @@ function mount() {
     }
 
     body.innerHTML = shell;
+
+    // Back-to-top button — appended after the shell so innerHTML doesn't wipe it
+    if (layout !== 'reader') {
+      const backTop = document.createElement('button');
+      backTop.className = 'back-to-top';
+      backTop.setAttribute('aria-label', 'Back to top');
+      backTop.innerHTML = icon('arrow-up', { size: 20 });
+      backTop.addEventListener('click', () => {
+        const lenis = window.__lenis;
+        if (lenis) lenis.scrollTo(0, { duration: 1.2 });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      document.body.appendChild(backTop);
+    }
 
     if (layout === 'app') {
       qs('#sidebar-mount').innerHTML = renderSidebar(page, store.get().ui?.sidebarCollapsed);
@@ -230,6 +259,15 @@ function wireShellEvents(layout, page) {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
+  const backTop = qs('.back-to-top');
+  if (backTop) {
+    const onScrollTop = () => {
+      const scrolled = window.scrollY > 480;
+      backTop.classList.toggle('is-visible', scrolled);
+    };
+    window.addEventListener('scroll', onScrollTop, { passive: true });
+    onScrollTop();
+  }
   const prog = qs('.scroll-progress');
   if (prog && layout !== 'app') {
     window.addEventListener('scroll', () => {
@@ -248,9 +286,20 @@ function finishBoot() {
   }
 }
 
+import { dataService } from './services/dataService.js';
+
 /* ---------------- Boot ---------------- */
-function boot() {
+async function boot() {
   initSmoothScroll();
+  try {
+    await store.initAuth();
+    await dataService.initialize();
+  } catch (e) {
+    console.error('Failed to initialize data during boot', e);
+  }
+  installCoverWatchdog({
+    findBookByIsbn: (isbn) => dataService.cache.books.find((b) => b.isbn === isbn)
+  });
   mount();
 }
 

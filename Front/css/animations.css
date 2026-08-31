@@ -23,6 +23,23 @@
   background: linear-gradient(90deg, var(--burgundy), var(--gold)); transition: width 0.1s linear;
 }
 
+/* Back-to-top button — appears after scrolling down */
+.back-to-top {
+  position: fixed; right: 1.75rem; bottom: 1.75rem; z-index: 900;
+  width: 48px; height: 48px; border: none; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; background: linear-gradient(160deg, var(--burgundy), var(--burgundy-deep));
+  box-shadow: 0 6px 20px rgba(94, 47, 55, 0.35);
+  opacity: 0; visibility: hidden; transform: translateY(12px) scale(0.9);
+  transition: opacity 0.3s var(--ease, ease), transform 0.3s var(--ease, ease), visibility 0.3s, box-shadow 0.2s;
+}
+.back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+.back-to-top:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 26px rgba(94, 47, 55, 0.45); }
+.back-to-top:active { transform: translateY(0) scale(0.96); }
+@media (max-width: 640px) {
+  .back-to-top { right: 1rem; bottom: calc(4.5rem + 1rem); width: 44px; height: 44px; }
+}
+
 /* Hero book float */
 @keyframes floatY { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 .float { animation: floatY 6s ease-in-out infinite; }
