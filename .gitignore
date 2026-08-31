@@ -1,12 +1,15 @@
 # Dependencies
 node_modules/
 dist/
+
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 
 # Django
+db.sqlite3
 backend/db.sqlite3
 backend/media/
 backend/staticfiles/
@@ -38,3 +41,7 @@ npm-debug.log*
 htmlcov/
 .coverage
 .coverage.*
+
+# Local tooling / deployment
+.claude/launch.json
+.vercel/

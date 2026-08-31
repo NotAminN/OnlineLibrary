@@ -222,9 +222,7 @@ export const store = {
       api.delete(`/favorites/book/${id}/`).catch(console.error);
     } else {
       state.favorites.unshift(id);
-      // Wait, we need the internal ID for API, but we are passing slug.
-      // Let's modify the Django backend later to accept slug for these if necessary.
-      // Or we can just let it fail gracefully in this demo if it's purely for aesthetic.
+      api.post('/favorites/', { book: id }).catch(console.error);
     }
     persist(); emit('favorites', state.favorites); emit('state', state);
     return state.favorites.includes(id);

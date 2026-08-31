@@ -28,6 +28,7 @@ const pages = [
   { file: 'statistics.html', page: 'statistics', layout: 'app', title: 'Reading Statistics — Lumina', desc: 'Insights into your reading — books completed, pages read, streaks, and genre distribution.' },
   { file: 'profile.html', page: 'profile', layout: 'app', title: 'Profile — Lumina', desc: 'Your reader profile, favorite genres, and reading activity.' },
   { file: 'settings.html', page: 'settings', layout: 'app', title: 'Settings — Lumina', desc: 'Manage your account, reading preferences, notifications, and appearance.' },
+  { file: 'onboarding.html', page: 'onboarding', layout: 'public', title: 'Welcome — Lumina', desc: 'Personalize your Lumina experience — pick genres, authors, and reading goals.' },
   { file: 'login.html', page: 'login', layout: 'auth', title: 'Sign In — Lumina', desc: 'Sign in to your Lumina library.' },
   { file: 'register.html', page: 'register', layout: 'auth', title: 'Create an Account — Lumina', desc: 'Create your Lumina account and start building your library.' },
   { file: 'about.html', page: 'about', layout: 'public', title: 'About — Lumina', desc: 'Our mission, vision, and reading philosophy. A calm home for readers.' },

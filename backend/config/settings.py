@@ -11,10 +11,18 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
 
+# On Vercel the project root is the repo root (frontend and backend live
+# side by side), so allow the working directory to be either backend/ or
+# the repo root when locating env files.
+load_dotenv(Path.cwd() / 'backend' / '.env')
+
 # Security
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-me')
-DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 'yes')
+DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 'yes')
 ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',') if h.strip()]
+VERCEL_URL = os.getenv('VERCEL_URL', '').strip()
+if VERCEL_URL:
+    ALLOWED_HOSTS.append(VERCEL_URL)
 
 # Application definition
 INSTALLED_APPS = [
@@ -54,7 +62,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR.parent / 'dist'],
+        'DIRS': [p for p in [BASE_DIR.parent / 'dist'] if p.is_dir()],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,12 +79,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 ASGI_APPLICATION = 'config.asgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+# Local dev uses SQLite. On Vercel the filesystem is read-only and ephemeral,
+# so set DATABASE_URL to a hosted Postgres (e.g. Vercel Postgres / Neon).
+DATABASE_URL = os.getenv('DATABASE_URL', '')
+if DATABASE_URL:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
 
 # Custom user model
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -98,7 +113,9 @@ USE_TZ = True
 # Static files
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [BASE_DIR.parent / 'dist']
+# The Vite build output (repo-root/dist) is served by Vercel's static layer
+# in production; keep it declared for Django's collectstatic/admin.
+STATICFILES_DIRS = [p for p in [BASE_DIR.parent / 'dist'] if p.is_dir()]
 
 # Media files
 MEDIA_URL = '/media/'
@@ -140,16 +157,17 @@ SIMPLE_JWT = {
 }
 
 # CORS
+DEFAULT_LOCAL_ORIGINS = 'http://localhost:5173,http://127.0.0.1:5173,http://localhost:8800,http://127.0.0.1:8800'
 CORS_ALLOWED_ORIGINS = [
-    o.strip() for o in os.getenv(
-        'CORS_ALLOWED_ORIGINS',
-        'http://localhost:5173,http://127.0.0.1:5173,http://localhost:8800,http://127.0.0.1:8800'
-    ).split(',') if o.strip()
+    o.strip() for o in os.getenv('CORS_ALLOWED_ORIGINS', DEFAULT_LOCAL_ORIGINS).split(',') if o.strip()
 ]
 CSRF_TRUSTED_ORIGINS = [
-    o.strip() for o in os.getenv(
-        'CSRF_TRUSTED_ORIGINS',
-        'http://localhost:5173,http://127.0.0.1:5173,http://localhost:8800,http://127.0.0.1:8800'
-    ).split(',') if o.strip()
+    o.strip() for o in os.getenv('CSRF_TRUSTED_ORIGINS', DEFAULT_LOCAL_ORIGINS).split(',') if o.strip()
 ]
+if VERCEL_URL:
+    prod = f'https://{VERCEL_URL}'
+    CORS_ALLOWED_ORIGINS.append(prod)
+    CSRF_TRUSTED_ORIGINS.append(prod)
+# On Vercel the frontend and API share one origin, so same-origin requests
+# need no CORS at all; these entries cover preview/custom domains.
 CORS_ALLOW_CREDENTIALS = True

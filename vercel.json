@@ -1,0 +1,49 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": false,
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/__django"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/api/__django"
+    },
+    {
+      "source": "/admin",
+      "destination": "/api/__django"
+    },
+    {
+      "source": "/media/:path*",
+      "destination": "/api/__django"
+    }
+  ],
+  "functions": {
+    "api/__django.py": {
+      "includeFiles": "backend/**"
+    }
+  },
+  "headers": [
+    {
+      "source": "/static/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.html",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, must-revalidate"
+        }
+      ]
+    }
+  ]
+}

@@ -26,6 +26,7 @@ export default defineConfig({
         statistics: resolve(__dirname, 'Front/statistics.html'),
         profile: resolve(__dirname, 'Front/profile.html'),
         settings: resolve(__dirname, 'Front/settings.html'),
+        onboarding: resolve(__dirname, 'Front/onboarding.html'),
         login: resolve(__dirname, 'Front/login.html'),
         register: resolve(__dirname, 'Front/register.html'),
         about: resolve(__dirname, 'Front/about.html'),
