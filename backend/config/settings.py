@@ -51,6 +51,14 @@ VERCEL_URL = os.getenv("VERCEL_URL", "").strip()
 if VERCEL_URL and VERCEL_URL not in ALLOWED_HOSTS:
     ALLOWED_HOSTS.append(VERCEL_URL)
 
+# Production domain is pinned in code so a stale or missing env var on
+# Vercel can't break API requests with DisallowedHost (400) errors.
+PRODUCTION_HOST = "luumina.vercel.app"
+PRODUCTION_ORIGIN = f"https://{PRODUCTION_HOST}"
+
+if PRODUCTION_HOST not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(PRODUCTION_HOST)
+
 
 # =========================================================
 # Application definition
@@ -306,5 +314,11 @@ if VERCEL_URL:
 
     if production_origin not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(production_origin)
+
+if PRODUCTION_ORIGIN not in CORS_ALLOWED_ORIGINS:
+    CORS_ALLOWED_ORIGINS.append(PRODUCTION_ORIGIN)
+
+if PRODUCTION_ORIGIN not in CSRF_TRUSTED_ORIGINS:
+    CSRF_TRUSTED_ORIGINS.append(PRODUCTION_ORIGIN)
 
 CORS_ALLOW_CREDENTIALS = True
