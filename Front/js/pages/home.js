@@ -115,19 +115,39 @@ export default {
 
       <!-- EDITORIAL RECOMMENDATION -->
       <section class="container-wide" style="padding-block:clamp(3rem,6vw,5rem)">
-        <div class="card editorial-pick" data-reveal>
-          <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap">
-            <div style="flex:1 1 380px;min-width:300px">
-              <div class="eyebrow mb-3">EDITOR’S PICK</div>
-              <h3 class="font-serif" style="font-size:2.4rem">${editorPick.title}</h3>
-              <p class="muted mt-1">${authorName(editorPick.author)} · ${genreById[editorPick.genre].name}</p>
-              <p class="lede mt-4" style="max-width:52ch">${editorPick.description}</p>
-              <a class="btn btn--primary mt-5" href="book.html?id=${editorPick.id}">Discover this book ${icon('arrow-right', { size: 16 })}</a>
-            </div>
-            <div style="flex:0 1 300px;min-width:240px;width:min(300px,100%);margin-inline-start:auto">${cover(editorPick, { className: '', actions: false })}</div>
-          </div>
+  ${editorPick ? `
+    <div class="card editorial-pick" data-reveal>
+      <div style="display:flex;align-items:center;gap:2.5rem;flex-wrap:wrap">
+        <div style="flex:1 1 380px;min-width:300px">
+          <div class="eyebrow mb-3">EDITOR’S PICK</div>
+          <h3 class="font-serif" style="font-size:2.4rem">${editorPick.title}</h3>
+          <p class="muted mt-1">
+            ${authorName(editorPick.author)} · ${genreById[editorPick.genre]?.name || 'Book'}
+          </p>
+          <p class="lede mt-4" style="max-width:52ch">${editorPick.description || ''}</p>
+          <a class="btn btn--primary mt-5" href="book.html?id=${editorPick.id}">
+            Discover this book ${icon('arrow-right', { size: 16 })}
+          </a>
         </div>
-      </section>
+
+        <div style="flex:0 1 300px;min-width:240px;width:min(300px,100%);margin-inline-start:auto">
+          ${cover(editorPick, { className: '', actions: false })}
+        </div>
+      </div>
+    </div>
+  ` : `
+    <div class="card" data-reveal style="padding:2rem;text-align:center">
+      <div class="eyebrow mb-2">LIBRARY</div>
+      <h3 class="font-serif">Your library is waiting to be filled.</h3>
+      <p class="muted mt-2">
+        Books will appear here once the library has been populated.
+      </p>
+      <a class="btn btn--primary mt-4" href="explore.html">
+        Explore Books
+      </a>
+    </div>
+  `}
+  </section>
 
       <!-- AUTHORS -->
       <section class="container-wide" style="padding-block:clamp(2rem,5vw,4rem)">
