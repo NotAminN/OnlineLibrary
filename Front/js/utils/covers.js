@@ -4,6 +4,7 @@
 
 import { genreById } from '../data/genres.js';
 import { authorById } from '../data/authors.js';
+import { isbnByBookId } from '../data/bookIsbns.js';
 
 const AUTHOR_NAMES = Object.fromEntries(Object.values(authorById).map((a) => [a.id, a.name]));
 
@@ -141,9 +142,12 @@ function escapeXml(s) { return String(s).replace(/[<>&'"]/g, (c) => ({ '<': '&lt
 
 // Real cover image via the Open Library Covers API, keyed to the book's ISBN,
 // so the image always matches the exact title and author in the catalog.
+// The verified catalog map wins over the backend value: seeded rows may be
+// missing the ISBN entirely or carry one whose cover no longer resolves.
 export function coverUrl(book) {
-  if (!book?.isbn) return null;
-  return `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg?default=false`;
+  const isbn = (book?.id && isbnByBookId[book.id]) || book?.isbn || null;
+  if (!isbn) return null;
+  return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg?default=false`;
 }
 
 // Procedural SVG fallback, used if the real cover cannot be loaded.

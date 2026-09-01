@@ -217,7 +217,7 @@ export const books = [
 const REST = [
   ['b-the-long-reckoning', 'The Big Sleep', 'a-chandler', 'crime',
     'When the Sternwood family hires Philip Marlowe to trace a blackmail debt, the detective finds two sisters, a vanished chauffeur, and more murder than anyone paid for.',
-    ['noir', 'detective', 'classic'], 4.0, 274, 1939, '9780394758284', {},
+    ['noir', 'detective', 'classic'], 4.0, 274, 1939, '9780241956281', {},
     ['a dying general, a case of blackmail, and marlowe walking into the Sternwood garden for the first time',
      'the bookshop, the missing chauffeur, and a body pulled from an oil sump off the coast road',
      'a pornographer, a gambler, and the truth about where the rain never falls',
@@ -266,7 +266,7 @@ const REST = [
      'the last entry, three days before the annex is betrayed and the voice falls silent']],
   ['b-durable', 'The Soul of a New Machine', 'a-kidder', 'technology',
     'Inside Data General in the late 1970s, a team of young engineers secretly builds a new computer against impossible deadlines. Kidder made engineering read like a novel — and won a Pulitzer.',
-    ['engineering', 'nonfiction', 'computers'], 4.2, 293, 1981, '9780380719702', {},
+    ['engineering', 'nonfiction', 'computers'], 4.2, 293, 1981, '9781579546038', {},
     ['a company falling behind, and a manager who signs up to build a machine no one assigned him',
      'the basement of westborough, mushroom managers, and engineers who sign their work in microcode',
      'the race to tape-out, sixteen-hour days, and debugging by feel at three in the morning',
