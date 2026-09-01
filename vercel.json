@@ -6,11 +6,15 @@
 
   "rewrites": [
     {
-      "source": "/api/:path*",
+      "source": "/api/(.*)",
       "destination": "/api/django.py"
     },
     {
-      "source": "/admin/:path*",
+      "source": "/admin/(.*)",
+      "destination": "/api/django.py"
+    },
+    {
+      "source": "/admin",
       "destination": "/api/django.py"
     }
   ],
