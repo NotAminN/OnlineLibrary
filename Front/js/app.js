@@ -7,7 +7,7 @@ import '../css/main.css';
 
 import { qs, qsa, go } from './utils/dom.js';
 import { store } from './state/store.js';
-import { initSmoothScroll, scrollToTop, prefersReduced } from './animations/gsap.js';
+import { initSmoothScroll, scrollToTop } from './animations/gsap.js';
 import { renderNavbar, renderFooter, renderBottomNav, renderSidebar, renderTopbar, brand } from './components/shell.js';
 import { openSearch, openCommandPalette, openNotifications, openMobileMenu } from './components/modals.js';
 import { toast } from './utils/toast.js';
@@ -64,12 +64,6 @@ function mount() {
   const page = body.dataset.page;
   const layout = body.dataset.layout;
   const mod = PAGES[page] || notFound;
-  // Always remove the boot overlay, even if a downstream render throws —
-  // otherwise an uncaught error leaves the user staring at a blank screen.
-  const removeBoot = (delay = 0) => setTimeout(() => {
-    const b = qs('#app-boot');
-    if (b) { b.classList.add('hide'); setTimeout(() => b.remove(), 450); }
-  }, delay);
   // Show a clear error in the body if something throws, so the user is never
   // left with a blank white page.
   const showError = (err) => {
@@ -82,7 +76,6 @@ function mount() {
       <pre style="white-space:pre-wrap;background:#F7F4EE;padding:1rem;border-radius:8px;font-size:.85rem;overflow:auto;margin:0">${(err && err.stack) || String(err)}</pre>
       <button style="margin-top:1rem;background:#743C45;color:#fff;border:none;padding:.6rem 1rem;border-radius:8px;cursor:pointer;font-weight:600" onclick="location.reload()">Reload</button>`;
     body.appendChild(node);
-    removeBoot(0);
   };
   window.addEventListener('error', (e) => { if (e.error) console.error('Window error:', e.error); });
   window.addEventListener('unhandledrejection', (e) => { console.error('Unhandled rejection:', e.reason); });
@@ -96,7 +89,7 @@ function mount() {
     const params = getParams();
 
     // Gate personal pages behind login — redirect before anything renders.
-    if (!requireAuth(page)) { removeBoot(0); return; }
+    if (!requireAuth(page)) return;
 
     if (layout === 'reader') {
       // Reader manages its own full screen; still allow global search/command.
@@ -112,7 +105,7 @@ function mount() {
       body.appendChild(wrap);
       document.getElementById('page-content').innerHTML = mod.render(params);
       mod.init?.(qs('#page-content'), params);
-      finishBoot();
+      scrollToTop();
       wireGlobal();
       return;
     }
@@ -164,7 +157,7 @@ function mount() {
 
     wireGlobal();
     wireShellEvents(layout, page);
-    finishBoot();
+    scrollToTop();
   } catch (err) {
     showError(err);
   }
@@ -188,7 +181,6 @@ function mountReader(mod, params) {
     content.innerHTML = `<div style="padding:2rem;max-width:42rem;margin:0 auto;color:#252321"><h2 style="font-family:'Playfair Display',serif;color:#743C45">Reader error</h2><p>The book failed to open. <a href="index.html" style="color:#743C45">Return to library</a></p></div>`;
     console.error('Reader mount error:', err);
   }
-  const boot = qs('#app-boot'); if (boot) boot.remove();
 }
 
 function notFound() {
@@ -275,14 +267,6 @@ function wireShellEvents(layout, page) {
       const pct = (h.scrollTop || window.scrollY) / (h.scrollHeight - h.clientHeight || 1);
       prog.style.width = (pct * 100).toFixed(1) + '%';
     }, { passive: true });
-  }
-}
-
-function finishBoot() {
-  scrollToTop();
-  const boot = qs('#app-boot');
-  if (boot) {
-    setTimeout(() => { boot.classList.add('hide'); setTimeout(() => boot.remove(), 450); }, prefersReduced ? 0 : 260);
   }
 }
 

@@ -16,15 +16,9 @@
   <style>
     html { background: #F7F4EE; }
     body { margin: 0; font-family: Inter, system-ui, sans-serif; color: #252321; -webkit-font-smoothing: antialiased; }
-    .boot { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: #F7F4EE; z-index: 99999; transition: opacity .4s ease; }
-    .boot-mark { font-family: "Playfair Display", serif; font-size: 1.6rem; letter-spacing: .04em; color: #743C45; }
-    .boot-mark i { font-style: normal; opacity: .45; }
-    .boot.hide { opacity: 0; pointer-events: none; }
-    @media (prefers-reduced-motion: reduce) { .boot { transition: none; } }
   </style>
 </head>
 <body data-page="faq" data-layout="public">
-  <div class="boot" id="app-boot" aria-hidden="true"><div class="boot-mark">Lumina<i>.</i></div></div>
   <script type="module" src="./js/app.js"></script>
   <noscript><div style="padding:2.5rem;font-family:Inter,system-ui,sans-serif;max-width:42rem;margin:0 auto">Lumina is a reading application and requires JavaScript to be enabled in your browser.</div></noscript>
 </body>
