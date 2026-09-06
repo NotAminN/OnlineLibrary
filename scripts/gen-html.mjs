@@ -12,6 +12,12 @@ const FRONT = resolve(__dirname, '../Front');
 const SITE = 'Lumina';
 const TAGLINE = 'Discover beautiful books. Read without distraction.';
 
+// Favicon: the brand mark — a burgundy rounded square with a white serif "L"
+// (same as .brand__mark in components.css).
+const FAVICON = `data:image/svg+xml,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#743C45"/><text x="32" y="46" text-anchor="middle" font-family="Georgia,'Playfair Display',serif" font-weight="700" font-size="40" fill="#FFFFFF">L</text></svg>`
+)}`;
+
 const pages = [
   { file: 'index.html', page: 'home', layout: 'public', title: 'Lumina — Discover Books Worth Getting Lost In', desc: 'A premium digital library and reading platform. Discover curated books, build your personal library, and read without distraction.' },
   { file: 'explore.html', page: 'explore', layout: 'public', title: 'Explore Books — Lumina', desc: 'Browse the full Lumina collection. Filter by genre, author, rating, and more to find your next great read.' },
@@ -48,6 +54,7 @@ const shell = (p) => `<!DOCTYPE html>
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#F7F4EE" />
+  <link rel="icon" type="image/svg+xml" href="${FAVICON}" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet" />

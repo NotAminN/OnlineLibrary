@@ -213,6 +213,10 @@
 .filter-group { padding: 1rem 0; border-bottom: 1px solid var(--line); }
 .filter-group:last-child { border-bottom: none; }
 .filter-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gray); margin-bottom: 0.6rem; font-weight: 600; }
+/* Segmented controls inside the filter panel must fit the narrow column —
+   wrap onto multiple rows instead of overflowing the card. */
+#filter-panel .segmented { display: flex; flex-wrap: wrap; width: 100%; }
+#filter-panel .segmented button { padding: 0.35rem 0.6rem; white-space: nowrap; }
 .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
 .result-count { font-size: 0.9rem; color: var(--warm-gray); }
 .collection-hero { background: linear-gradient(135deg, var(--ink), #3a2e2a); color: #fff; border-radius: var(--radius-2xl); padding: clamp(2rem,5vw,3.5rem); position: relative; overflow: hidden; }
