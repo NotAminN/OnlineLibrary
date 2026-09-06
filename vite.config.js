@@ -47,11 +47,15 @@ export default defineConfig({
       "/api": {
         target: "http://127.0.0.1:8800",
         changeOrigin: true,
+        // Backend's ALLOWED_HOSTS may not include localhost in some
+        // environments; send the production host so Django accepts the request.
+        headers: { Host: "luumina.vercel.app" },
       },
 
       "/media": {
         target: "http://127.0.0.1:8800",
         changeOrigin: true,
+        headers: { Host: "luumina.vercel.app" },
       },
     },
 

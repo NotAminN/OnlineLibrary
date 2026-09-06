@@ -72,6 +72,11 @@ class Command(BaseCommand):
                         'reading_time': b.get('readingTime', 0),
                         'rating': b.get('rating', 0.0),
                         'language': b.get('language', 'English'),
+                        'isbn': b.get('isbn', ''),
+                        'is_new': b.get('isNew', False),
+                        'is_popular': b.get('isPopular', False),
+                        'is_featured': b.get('isFeatured', False),
+                        'editor_pick': b.get('editorPick', False),
                     }
                 )
                 
